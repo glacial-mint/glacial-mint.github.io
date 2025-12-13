@@ -1,1 +1,1 @@
-# mint.gitnub.io
+# mint.github.io
