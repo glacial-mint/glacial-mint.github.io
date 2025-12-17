@@ -7,7 +7,7 @@ markdownの使い方
 
 
 # 自己紹介
-<img src="image/touxiang1.jpg"width="300">
+<img src="image/touxiang1.jpg" width="300">
 <br>チョウ・マンソウ (ZHANG MANCAO) 
 <br>中国・広東省出身
 　　<br>これまでは主に、インタラクティブアートの制作に携わってきました。楽器演奏の可視化や、表情の変化に反応するインタラクション作品などがその代表例です。また、UIデザインの分野においては、「使いやすさ」と「楽しさ」が共存するデザインを心がけています。
@@ -16,7 +16,7 @@ markdownの使い方
 ## 作品展示
 裏と表
 
-<img src="image/image8.jpg"width="300">
+<img src="image/image8.jpg" width="300">
 
 ## 趣味
-<img src="image/syumi.jpg"width="300">
+<img src="image/syumi.jpg" width="300">
