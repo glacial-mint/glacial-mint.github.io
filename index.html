@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZHANG MANCAO | Portfolio</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* ================= CSS 样式 ================= */
+        :root {
+            --bg-color: #EAF3FA;
+            --text-main: #181828;
+            --text-sub: #5B5B75;
+            --accent-color: #6B5ED9;
+            --font-en: 'Montserrat', sans-serif;
+            --font-jp: 'Noto Sans JP', sans-serif;
+            --spacing-section: 120px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-jp);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: 8px;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            outline: none;
+            background: none;
+        }
+
+        /* --- 交互背景 --- */
+        .interactive-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.7;
+            mix-blend-mode: multiply;
+            will-change: transform;
+            transition: opacity 1s ease;
+        }
+
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: #6B5ED9;
+            top: 20%;
+            left: 20%;
+        }
+
+        .blob-2 {
+            width: 600px;
+            height: 600px;
+            background: #9A8FF0;
+            top: 50%;
+            left: 70%;
+        }
+
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background: #D8D5FA;
+            top: 70%;
+            left: 30%;
+        }
+
+        /* --- 布局 --- */
+        .section {
+            padding: var(--spacing-section) 5vw;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-title {
+            font-family: var(--font-en);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .ja-title {
+            font-family: var(--font-jp);
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--text-sub);
+            margin-left: 1rem;
+        }
+
+        /* --- Hero & About --- */
+        .hero-title .name {
+            display: block;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1;
+        }
+
+        .hero-title .portfolio {
+            display: block;
+            font-size: clamp(2rem, 6vw, 5rem);
+            font-weight: 300;
+            color: var(--accent-color);
+            letter-spacing: 5px;
+            margin-top: 10px;
+        }
+
+        .hero-subtitle {
+            margin: 3rem 0;
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1.5rem;
+            max-width: 600px;
+        }
+
+        .hero-tags {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-tags li {
+            padding: 0.5rem 1.5rem;
+            border: 1px solid var(--text-main);
+            border-radius: 50px;
+            font-family: var(--font-en);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .grid-layout-about {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 20px 20px 0px rgba(107, 94, 217, 0.1);
+        }
+
+        .profile-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .en-name {
+            color: var(--accent-color);
+            font-family: var(--font-en);
+            font-size: 1rem;
+            margin-left: 10px;
+        }
+
+        /* --- Works Grid --- */
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .work-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(107, 94, 217, 0.05);
+            transition: transform 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .work-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .work-thumbnail {
+            width: 100%;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            background: #f4f4f4;
+        }
+
+        .work-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .work-info {
+            padding: 1.5rem;
+        }
+
+        .work-title {
+            font-family: var(--font-en);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .work-desc {
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-click-area {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        /* --- Modal --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(24, 24, 40, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-container {
+            background: #fff;
+            width: 90%;
+            max-width: 900px;
+            max-height: 90vh;
+            border-radius: 20px;
+            overflow-y: auto;
+            padding: 3rem;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            color: var(--text-sub);
+            transition: transform 0.2s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--accent-color);
+            transform: rotate(90deg);
+        }
+
+        .modal-content h2 {
+            font-family: var(--font-en);
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 1rem;
+        }
+
+        .modal-content .text-block {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 2rem;
+            white-space: pre-wrap;
+        }
+
+        .modal-media {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* 视频容器 (16:9) */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            background: #000;
+            margin-bottom: 1rem;
+        }
+
+        .video-container iframe,
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 详情页图片列表 */
+        .image-gallery img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --spacing-section: 80px;
+            }
+
+            .grid-layout-about {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-container {
+                padding: 1.5rem;
+                width: 95%;
+            }
+
+            .hero-title .name {
+                font-size: 15vw;
+            }
+
+            .blob-1,
+            .blob-2,
+            .blob-3 {
+                width: 300px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 交互背景 -->
+    <div class="interactive-bg">
+        <div class="blob blob-1" data-speed="0.05"></div>
+        <div class="blob blob-2" data-speed="0.08"></div>
+        <div class="blob blob-3" data-speed="0.06"></div>
+    </div>
+
+    <main class="main-container">
+
+        <!-- Hero Section -->
+        <section class="section">
+            <div class="content-wrapper">
+                <div class="hero-title">
+                    <span class="name">ZHANG MANCAO</span>
+                    <span class="portfolio">PORTFOLIO</span>
+                </div>
+                <p class="hero-subtitle">インタラクション・アートからUIデザインまで。<br>新しい体験を紡ぐ。</p>
+                <ul class="hero-tags">
+                    <li>UI/UX Design</li>
+                    <li>Interactive Art</li>
+                    <li>Fashion Design</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="section">
+            <div class="content-wrapper grid-layout-about">
+                <div class="about-image">
+                    <img src="https://i.postimg.cc/ZqFBKS3R/tou-xiang1.jpg" alt="Profile">
+                </div>
+                <div class="about-text">
+                    <h2 class="section-title">PROFILE</h2>
+                    <div class="profile-info">
+                        <h3 class="profile-name">チョウ・マンソウ <span class="en-name">(ZHANG MANCAO)</span></h3>
+                        <p style="color:var(--text-sub)">中国・広東省出身</p>
+                    </div>
+                    <br>
+                    <p>これまでは主に、インタラクティブアートの制作に携わってきました。楽器演奏の可視化や、表情の変化に反応するインタラクション作品などがその代表例です。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Works Section -->
+        <section class="section">
+            <div class="content-wrapper">
+                <h2 class="section-title">Selected Works <span class="ja-title">/ 制作実績</span></h2>
+                <p style="margin-bottom: 3rem; color: var(--text-sub);">各画像をクリックして詳細をご覧ください。</p>
+
+                <div class="works-grid">
+                    <!-- Work 1: 伝統楽器 -->
+                    <article class="work-card">
+                        <div class="card-click-area" onclick="openModal('modal-1')"></div>
+                        <div class="work-thumbnail">
+                            <img src="https://i.postimg.cc/htd5fCp5/image2.jpg" alt="伝統楽器の可視化">
+                        </div>
+                        <div class="work-info">
+                            <h3 class="work-title">伝統楽器の可視化</h3>
+                            <p class="work-desc">TouchDesignerを用いた音色の可視化とインタラクティブ演奏体験。</p>
+                        </div>
+                    </article>
+
+                    <!-- Work 2: DREAM AI -->
+                    <article class="work-card">
+                        <div class="card-click-area" onclick="openModal('modal-2')"></div>
+                        <div class="work-thumbnail">
+                            <img src="https://i.postimg.cc/Jh5hb5pz/image13.jpg" alt="DREAM AI">
+                        </div>
+                        <div class="work-info">
+                            <h3 class="work-title">DREAM - AI Animation</h3>
+                            <p class="work-desc">MidjourneyとTouchDesignerを融合させた、夢と不安が交錯する物語。</p>
+                        </div>
+                    </article>
+
+                    <!-- Work 3: MY DARUMA -->
+                    <article class="work-card">
+                        <div class="card-click-area" onclick="openModal('modal-3')"></div>
+                        <div class="work-thumbnail">
+                            <img src="https://i.postimg.cc/gjwBP45b/image9.jpg" alt="MY DARUMA">
+                        </div>
+                        <div class="work-info">
+                            <h3 class="work-title">MY DARUMA</h3>
+                            <p class="work-desc">新年の抱負を形にする参加型デジタル体験。</p>
+                        </div>
+                    </article>
+
+                    <!-- Work 4: 裏と表 -->
+                    <article class="work-card">
+                        <div class="card-click-area" onclick="openModal('modal-4')"></div>
+                        <div class="work-thumbnail">
+                            <img src="https://i.postimg.cc/9fHNTGk3/image8.jpg" alt="裏と表">
+                        </div>
+                        <div class="work-info">
+                            <h3 class="work-title">裏と表</h3>
+                            <p class="work-desc">粘土造形とプロジェクションマッピング。</p>
+                        </div>
+                    </article>
+
+                    <!-- Work 5: Knitting -->
+                    <article class="work-card">
+                        <div class="work-thumbnail">
+                            <img src="https://placehold.co/800x500/E0DDF9/6B5ED9?text=Knitting+Process" alt="Work 5">
+                        </div>
+                        <div class="work-info">
+                            <h3 class="work-title">Knitting Process</h3>
+                            <p class="work-desc">【Coming Soon】初心者のための編み物制作プロセスの研究。</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <footer style="text-align:center; padding: 4rem 0; color: var(--text-sub); opacity: 0.6; font-size: 0.8rem;">
+            &copy; 2025 ZHANG MANCAO. All Rights Reserved.
+        </footer>
+    </main>
+
+    <!-- ================= MODALS ================= -->
+    <div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
+
+        <!-- Modal 1: 伝統楽器 -->
+        <div id="modal-1" class="modal-container" style="display:none;">
+            <button class="close-btn" onclick="closeModalBtn()">×</button>
+            <div class="modal-content">
+                <h2>伝統楽器の可視化</h2>
+                <div class="text-block">
+                    伝統音楽楽器の可視化を主題として、TouchDesignerを使って映像を出力することです。伝統楽器の可視化技術を基に、中国伝統楽器の可視化制作に取り組みました。
+
+                    TouchDesignerで音声データ分析技術やフーリエ変換を活用し、箏や笛などの伝統楽器の音色の特徴を即時的に動画に出力することで、演奏の中で個々の楽器を分離して演奏できます。</div>
+
+                <div class="modal-media">
+
+                    <!-- 🔴 VIDEO SETTING FOR WORK 1 -->
+                    <!-- 将下面的 iframe src 替换为您的 YouTube 链接 -->
+                    <!-- 如果使用本地视频，请删除 iframe，使用: <video controls src="your_video.mp4" style="width:100%"></video> -->
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/watch?v=w8fTOrn-avI" frameborder="0"
+                            allowfullscreen></iframe>
+                    </div>
+
+                    <div class="image-gallery">
+                        <!-- image2 (缩略图), image1, image3 -->
+                        <img src="https://i.postimg.cc/htd5fCp5/image2.jpg" alt="Thumbnail View">
+                        <img src="https://i.postimg.cc/zGgcVd07/image1.jpg" alt="Detail 1">
+                        <img src="https://i.postimg.cc/3xvcdLnf/image3.jpg" alt="Detail 3">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 2: DREAM -->
+        <div id="modal-2" class="modal-container" style="display:none;">
+            <button class="close-btn" onclick="closeModalBtn()">×</button>
+            <div class="modal-content">
+                <h2>DREAM - AI Animation</h2>
+                <div class="text-block">
+                    ウサギの国とDreamcoreの世界観を組み合わせ、温かさの中に不穏さを感じさせるアニメーション作品を制作しました。夢の世界に閉じ込められてしまう物語を描いています。
+
+                    本作ではAIだけでなく、手描き表現や映像編集も取り入れ、さらにTouchDesignerを用いて視線トラッキングの表現にも挑戦しました。
+
+                    [使用ツール] Midjourney, Dreamina, Veo3
+                    [編集] CapCut</div>
+
+                <div class="modal-media">
+
+                    <!-- 🔴 VIDEO SETTING FOR WORK 2 -->
+                    <!-- 将下面的 iframe src 替换为您的 YouTube 链接 -->
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/watch?v=zstxWkITl7M&feature=youtu.be" frameborder="0"
+                            allowfullscreen></iframe>
+                    </div>
+
+                    <div class="image-gallery">
+                        <!-- image13 (缩略图) -->
+                        <img src="https://i.postimg.cc/Jh5hb5pz/image13.jpg" alt="Dream AI">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 3: MY DARUMA -->
+        <div id="modal-3" class="modal-container" style="display:none;">
+            <button class="close-btn" onclick="closeModalBtn()">×</button>
+            <div class="modal-content">
+                <h2>MY DARUMA</h2>
+                <div class="text-block">本企画は、新年の抱負をもとに「MY DARUMA」を生成する参加型体験です。
+
+                    QRコードやNFCを通じてWebにアクセスし、願いを入力することでオリジナルのだるまが生まれます。1月と12月に行う「目入れの儀式」を通して、一年をかけて願いを結ぶ体験を設計しました。</div>
+                <div class="modal-media">
+                    <div class="image-gallery">
+                        <!-- image9 (缩略图), image10, 11, 12 -->
+                        <img src="https://i.postimg.cc/gjwBP45b/image9.jpg" alt="Thumbnail View">
+                        <img src="https://i.postimg.cc/fRy0KF6B/image10.jpg" alt="Detail">
+                        <img src="https://i.postimg.cc/Cx5fNtWW/image11.jpg" alt="Detail">
+                        <img src="https://i.postimg.cc/RZhnR8jk/image12.jpg" alt="Detail">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 4: 裏と表 -->
+        <div id="modal-4" class="modal-container" style="display:none;">
+            <button class="close-btn" onclick="closeModalBtn()">×</button>
+            <div class="modal-content">
+                <h2>裏と表</h2>
+                <div class="text-block">粘土で立体アートを作りました。自分の涙で殻を編み、自分を包み込む。涙は柔らかい心を象徴し、殻は外面的なイメージを象徴する。
+
+                    表情の変化によって、立体アートの上に投影します。喜怒哀楽の表情を視覚的に映し出す、観客の感情表現を引き出し、インタラクティブを活用して、観客の共感を得る。</div>
+                <div class="modal-media">
+                    <div class="image-gallery">
+                        <!-- image8 (缩略图), image4, 5, 6, 7 -->
+                        <img src="https://i.postimg.cc/9fHNTGk3/image8.jpg" alt="Thumbnail View">
+                        <img src="https://i.postimg.cc/52CR6PnG/image4.jpg" alt="Detail 4">
+                        <img src="https://i.postimg.cc/g2ZTnMNQ/image5.jpg" alt="Detail 5">
+                        <img src="https://i.postimg.cc/3xvcdLnz/image6.jpg" alt="Detail 6">
+                        <img src="https://i.postimg.cc/LsF0fzbb/image7.jpg" alt="Detail 7">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 交互脚本 -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 光斑排斥逻辑
+            const blobs = document.querySelectorAll('.blob');
+            let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+            const blobData = Array.from(blobs).map(blob => {
+                const rect = blob.getBoundingClientRect();
+                return { element: blob, x: rect.left, y: rect.top, originX: rect.left, originY: rect.top, vx: 0, vy: 0, speedFactor: parseFloat(blob.getAttribute('data-speed')) };
+            });
+            window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+            function animate() {
+                blobData.forEach(data => {
+                    const centerX = data.x + data.element.offsetWidth / 2;
+                    const centerY = data.y + data.element.offsetHeight / 2;
+                    const dx = mouseX - centerX, dy = mouseY - centerY;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    const interactionRadius = 600;
+                    if (distance < interactionRadius) {
+                        const force = (interactionRadius - distance) / interactionRadius;
+                        data.vx += (dx / distance) * force * -2;
+                        data.vy += (dy / distance) * force * -2;
+                    }
+                    data.vx += (data.originX - data.x) * 0.02;
+                    data.vy += (data.originY - data.y) * 0.02;
+                    data.vx *= 0.92; data.vy *= 0.92;
+                    data.x += data.vx; data.y += data.vy;
+                    data.element.style.transform = `translate(${data.x - data.originX}px, ${data.y - data.originY}px)`;
+                });
+                requestAnimationFrame(animate);
+            }
+            animate();
+
+            window.addEventListener('resize', () => {
+                blobData.forEach(data => {
+                    data.element.style.transform = 'none';
+                    const rect = data.element.getBoundingClientRect();
+                    data.originX = rect.left; data.originY = rect.top;
+                    data.x = rect.left; data.y = rect.top;
+                });
+            });
+
+            // 弹窗逻辑
+            const overlay = document.getElementById('modal-overlay');
+            const modalContainers = document.querySelectorAll('.modal-container');
+            window.openModal = function (modalId) {
+                modalContainers.forEach(el => el.style.display = 'none');
+                const content = document.getElementById(modalId);
+                if (content) {
+                    content.style.display = 'block';
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            };
+            window.closeModalBtn = function () {
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+                setTimeout(() => { modalContainers.forEach(el => el.style.display = 'none'); }, 300);
+            };
+            window.closeModal = function (event) {
+                if (event.target === overlay) closeModalBtn();
+            };
+        });
+    </script>
+</body>
+
+</html>
