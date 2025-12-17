@@ -1,7 +1,7 @@
 # mint.github.io
 # チョウマンソウのポートフォリオ
 
-markdownの使い方
+
 
 
 
