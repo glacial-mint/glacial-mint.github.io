@@ -695,6 +695,166 @@
             };
         });
     </script>
+    <!-- 白色大气版新年贺卡组件开始 -->
+    <div id="new-year-card-2026" style="
+        position: relative; 
+        width: 100%; 
+        height: 500px; 
+        background: linear-gradient(to bottom, #000814, #001d3d, #003566); 
+        overflow: hidden; 
+        margin-top: 50px;
+    ">
+        <!-- 动态落雪层 -->
+        <div id="snow-container"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+
+        <!-- 烟花画布层 -->
+        <div id="fireworks-container"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+
+        <!-- 文字内容 -->
+        <div style="
+            position: absolute; 
+            top: 45%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            text-align: center; 
+            z-index: 10;
+            width: 90%;
+        ">
+            <!-- 主标题：纯白色 + 柔和发光 -->
+            <h1 style="
+                font-family: 'Times New Roman', Georgia, serif; 
+                font-size: clamp(3.5rem, 9vw, 5.5rem); 
+                font-weight: 700;
+                margin: 0; 
+                letter-spacing: 10px;
+                color: #ffffff;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.2);
+                text-transform: uppercase;
+            ">
+                Happy New Year 2026
+            </h1>
+
+            <!-- 副标题：纯白色，增加间距 -->
+            <p style="
+                font-family: 'YuMincho', 'Yu Mincho', 'MS Mincho', serif;
+                font-size: clamp(1.2rem, 3vw, 2.2rem); 
+                margin: 25px 0 0; 
+                font-weight: 300;
+                letter-spacing: 12px;
+                color: rgba(255, 255, 255, 0.95);
+                text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+            ">
+                あけましておめでとうございます
+            </p>
+        </div>
+
+        <!-- 雪地地面 -->
+        <div style="
+            position: absolute; 
+            bottom: 0; 
+            width: 100%; 
+            height: 100px; 
+            background: linear-gradient(to bottom, #ffffff, #f0faff); 
+            border-radius: 50% 50% 0 0 / 30px 30px 0 0;
+        "></div>
+
+        <style>
+            /* 雪花动画 */
+            .snowflake {
+                position: absolute;
+                background: white;
+                border-radius: 50%;
+                opacity: 0.8;
+                pointer-events: none;
+                animation: fall linear infinite;
+            }
+
+            @keyframes fall {
+                to {
+                    transform: translateY(500px);
+                }
+            }
+
+            /* 烟花粒子动画 */
+            .firework-particle {
+                position: absolute;
+                width: 3px;
+                height: 3px;
+                border-radius: 50%;
+                pointer-events: none;
+                animation: explode 1.2s ease-out forwards;
+            }
+
+            @keyframes explode {
+                0% {
+                    transform: translate(0, 0);
+                    opacity: 1;
+                    scale: 1;
+                }
+
+                100% {
+                    transform: translate(var(--tx), var(--ty));
+                    opacity: 0;
+                    scale: 0.3;
+                }
+            }
+        </style>
+
+        <script>
+            (function () {
+                const card = document.getElementById('new-year-card-2026');
+                const snowContainer = document.getElementById('snow-container');
+                const fwContainer = document.getElementById('fireworks-container');
+
+                function createSnow() {
+                    for (let i = 0; i < 60; i++) {
+                        const snow = document.createElement('div');
+                        snow.className = 'snowflake';
+                        const size = Math.random() * 3 + 2 + 'px';
+                        snow.style.width = size;
+                        snow.style.height = size;
+                        snow.style.left = Math.random() * 100 + '%';
+                        snow.style.top = '-' + Math.random() * 20 + 'px';
+                        snow.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                        snow.style.animationDelay = Math.random() * 5 + 's';
+                        snowContainer.appendChild(snow);
+                    }
+                }
+
+                function launchFirework() {
+                    const x = Math.random() * card.offsetWidth;
+                    const y = Math.random() * (card.offsetHeight * 0.5);
+                    // 烟花也主要采用冷色调和白色，配合白色文字
+                    const colors = ['#ffffff', '#00d4ff', '#b8c6db', '#f5f7fa', '#ffffff'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+
+                    for (let i = 0; i < 35; i++) {
+                        const p = document.createElement('div');
+                        p.className = 'firework-particle';
+                        p.style.backgroundColor = color;
+                        p.style.boxShadow = `0 0 6px ${color}`;
+                        p.style.left = x + 'px';
+                        p.style.top = y + 'px';
+
+                        const angle = Math.random() * Math.PI * 2;
+                        const distance = Math.random() * 100 + 50;
+                        p.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+                        p.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+
+                        fwContainer.appendChild(p);
+                        setTimeout(() => p.remove(), 1200);
+                    }
+                }
+
+                createSnow();
+                setInterval(launchFirework, 2000);
+                setTimeout(launchFirework, 500);
+            })();
+        </script>
+    </div>
+    <!-- 白色大气版新年贺卡组件结束 -->
 </body>
 
 </html>
