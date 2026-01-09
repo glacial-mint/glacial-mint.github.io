@@ -695,166 +695,273 @@
             };
         });
     </script>
-    <!-- 白色大气版新年贺卡组件开始 -->
-    <div id="new-year-card-2026" style="
-        position: relative; 
-        width: 100%; 
-        height: 500px; 
-        background: linear-gradient(to bottom, #000814, #001d3d, #003566); 
-        overflow: hidden; 
-        margin-top: 50px;
-    ">
-        <!-- 动态落雪层 -->
-        <div id="snow-container"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
+    - 和风新年贺卡 - 卷轴展开交互版 -->
+    <div id="new-year-card-2026"
+        style="position: relative; width: 100%; height: 500px; background: linear-gradient(to bottom, #000814, #001d3d, #003566); overflow: hidden; margin-top: 50px;">
 
-        <!-- 烟花画布层 -->
-        <div id="fireworks-container"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;"></div>
-
-        <!-- 文字内容 -->
-        <div style="
-            position: absolute; 
-            top: 45%; 
-            left: 50%; 
-            transform: translate(-50%, -50%); 
-            text-align: center; 
-            z-index: 10;
-            width: 90%;
+        <!-- 1. 底部跳转按钮 -->
+        <div style="position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%); z-index: 20;">
+            <button onclick="openNewYearExperience()" style="
+            padding: 12px 35px; 
+            background: rgba(255,255,255,0.05); 
+            color: white; 
+            border: 1px solid rgba(255,255,255,0.4); 
+            cursor: pointer; 
+            font-family: 'YuMincho', 'serif'; 
+            font-size: 1.1rem; 
+            letter-spacing: 3px;
+            transition: all 0.4s;
+            backdrop-filter: blur(8px);
+            border-radius: 2px;
         ">
-            <!-- 主标题：纯白色 + 柔和发光 -->
-            <h1 style="
-                font-family: 'Times New Roman', Georgia, serif; 
-                font-size: clamp(3.5rem, 9vw, 5.5rem); 
-                font-weight: 700;
-                margin: 0; 
-                letter-spacing: 10px;
-                color: #ffffff;
-                text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.2);
-                text-transform: uppercase;
-            ">
-                Happy New Year 2026
-            </h1>
-
-            <!-- 副标题：纯白色，增加间距 -->
-            <p style="
-                font-family: 'YuMincho', 'Yu Mincho', 'MS Mincho', serif;
-                font-size: clamp(1.2rem, 3vw, 2.2rem); 
-                margin: 25px 0 0; 
-                font-weight: 300;
-                letter-spacing: 12px;
-                color: rgba(255, 255, 255, 0.95);
-                text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-            ">
-                あけましておめでとうございます
-            </p>
+                新春の風を吹く →
+            </button>
         </div>
 
-        <!-- 雪地地面 -->
-        <div style="
-            position: absolute; 
-            bottom: 0; 
-            width: 100%; 
-            height: 100px; 
-            background: linear-gradient(to bottom, #ffffff, #f0faff); 
-            border-radius: 50% 50% 0 0 / 30px 30px 0 0;
-        "></div>
+        <!-- 底部装饰背景 -->
+        <div id="footer-snow"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+        </div>
+        <div
+            style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; width: 90%;">
+            <h1
+                style="font-family: 'Times New Roman', serif; font-size: clamp(3rem, 8vw, 5rem); letter-spacing: 12px; margin:0; opacity: 0.9;">
+                2026</h1>
+            <p
+                style="font-family: 'YuMincho', serif; font-size: 1.2rem; letter-spacing: 6px; margin-top: 10px; opacity: 0.7;">
+                謹んで新春のお慶びを申し上げます</p>
+        </div>
+        <div
+            style="position: absolute; bottom: 0; width: 100%; height: 100px; background: linear-gradient(to bottom, #ffffff, #f0faff); border-radius: 50% 50% 0 0 / 30px 30px 0 0;">
+        </div>
+
+        <!-- 2. 全屏交互模式 -->
+        <div id="experience-overlay" style="
+        display: none; 
+        position: fixed; 
+        top: 0; left: 0; width: 100vw; height: 100vh; 
+        background: radial-gradient(circle at center, #001d3d 0%, #000814 100%); 
+        z-index: 9999; 
+        overflow: hidden;
+        cursor: crosshair;
+    ">
+            <!-- 退出按钮 -->
+            <div onclick="closeNewYearExperience()"
+                style="position: absolute; top: 30px; right: 30px; color: white; cursor: pointer; font-size: 28px; z-index: 10001; opacity: 0.5;">
+                ✕</div>
+
+            <div id="exp-snow" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></div>
+            <div id="exp-fireworks" style="position: absolute; width: 100%; height: 100%;"></div>
+
+            <!-- 引导提示 -->
+            <div id="guide-text"
+                style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.4); font-family: 'YuMincho', serif; pointer-events: none; letter-spacing: 4px;">
+                夜空をタップして、言葉を灯す
+            </div>
+
+            <!-- 短册容器：展开动画的核心 -->
+            <div id="tanzaku-wrapper" style="
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10002;
+            perspective: 1000px;
+        ">
+                <!-- 模拟纸张 -->
+                <div id="tanzaku" onclick="hideTanzaku()" style="
+                position: relative;
+                width: 130px;
+                height: 450px;
+                background-color: #F7E3AF;
+                background-image: 
+                    linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%),
+                    repeating-linear-gradient(45deg, rgba(0,0,0,0.01) 0px, rgba(0,0,0,0.01) 1px, transparent 1px, transparent 10px);
+                box-shadow: 5px 15px 40px rgba(0,0,0,0.6);
+                border-left: 5px solid #D43E2D;
+                padding: 45px 25px;
+                writing-mode: vertical-rl;
+                cursor: pointer;
+                /* 关键：初始状态为裁剪不可见 */
+                clip-path: inset(0 0 100% 0);
+                transition: clip-path 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            ">
+                    <div id="poem-content" style="
+                    font-family: 'YuMincho', 'MS Mincho', serif; 
+                    font-size: 1.8rem; 
+                    color: #222; 
+                    line-height: 2; 
+                    height: 100%; 
+                    letter-spacing: 6px;
+                    opacity: 0;
+                    transition: opacity 0.8s 0.8s; /* 延迟显示文字 */
+                "></div>
+                    <div id="poem-author" style="
+                    font-family: 'YuMincho', serif; 
+                    font-size: 0.9rem; 
+                    color: #555; 
+                    margin-top: 30px; 
+                    border-right: 1px solid rgba(212, 62, 45, 0.4); 
+                    padding-right: 12px;
+                    opacity: 0;
+                    transition: opacity 0.8s 1.2s;
+                "></div>
+                </div>
+            </div>
+        </div>
 
         <style>
-            /* 雪花动画 */
-            .snowflake {
-                position: absolute;
-                background: white;
-                border-radius: 50%;
-                opacity: 0.8;
-                pointer-events: none;
-                animation: fall linear infinite;
+            /* 展开时的状态 */
+            .unrolled {
+                clip-path: inset(0 0 0% 0) !important;
             }
 
-            @keyframes fall {
-                to {
-                    transform: translateY(500px);
-                }
+            .text-fade-in {
+                opacity: 1 !important;
             }
 
-            /* 烟花粒子动画 */
-            .firework-particle {
-                position: absolute;
-                width: 3px;
-                height: 3px;
-                border-radius: 50%;
-                pointer-events: none;
-                animation: explode 1.2s ease-out forwards;
-            }
-
-            @keyframes explode {
-                0% {
-                    transform: translate(0, 0);
-                    opacity: 1;
-                    scale: 1;
-                }
-
-                100% {
-                    transform: translate(var(--tx), var(--ty));
-                    opacity: 0;
-                    scale: 0.3;
-                }
+            /* 鼠标悬停按钮效果 */
+            button:hover {
+                background: rgba(255, 255, 255, 0.15) !important;
+                border-color: white !important;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             }
         </style>
 
         <script>
+            const poems = [
+                { text: "新春や 去年より少し 暖けき", author: "正岡子規", era: "明治" },
+                { text: "めでたさも 中くらいなり おらが春", author: "小林一茶", era: "江戸" },
+                { text: "元日や 冥土の旅の 一里塚", author: "夏目漱石", era: "明治" },
+                { text: "春の海 ひねもすのたり のたりかな", author: "与謝蕪村", era: "江戸" },
+                { text: "一枝の 梅だにだせり 今日の春", author: "松尾芭蕉", era: "江戸" },
+                { text: "柿くえば 鐘が鳴るなり 法隆寺", author: "正岡子規", era: "明治" }
+            ];
+
+            function openNewYearExperience() {
+                document.getElementById('experience-overlay').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                initExpSnow();
+            }
+
+            function closeNewYearExperience() {
+                document.getElementById('experience-overlay').style.display = 'none';
+                document.body.style.overflow = 'auto';
+                hideTanzaku();
+            }
+
+            // 点击放烟花并展示短册
+            document.getElementById('exp-fireworks').addEventListener('click', function (e) {
+                // 如果短册正在显示，先不触发新的
+                if (document.getElementById('tanzaku-wrapper').style.display === 'block') return;
+
+                createFireworkEffect(e.clientX, e.clientY);
+
+                // 烟花绽放后，纸条缓缓展开
+                setTimeout(() => showTanzaku(), 500);
+            });
+
+            function createFireworkEffect(x, y) {
+                const container = document.getElementById('exp-fireworks');
+                const colors = ['#ffffff', '#D43E2D', '#F7E3AF', '#C1AB05'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+
+                for (let i = 0; i < 45; i++) {
+                    const p = document.createElement('div');
+                    p.style.cssText = `position:absolute; left:${x}px; top:${y}px; width:3px; height:3px; border-radius:50%; pointer-events:none;`;
+                    p.style.backgroundColor = color;
+                    p.style.boxShadow = `0 0 8px ${color}`;
+
+                    const angle = Math.random() * Math.PI * 2;
+                    const dist = Math.random() * 160 + 40;
+
+                    p.animate([
+                        { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                        { transform: `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px) scale(0)`, opacity: 0 }
+                    ], { duration: 1200, easing: 'ease-out' });
+
+                    container.appendChild(p);
+                    setTimeout(() => p.remove(), 1200);
+                }
+            }
+
+            function showTanzaku() {
+                const wrapper = document.getElementById('tanzaku-wrapper');
+                const tanzaku = document.getElementById('tanzaku');
+                const content = document.getElementById('poem-content');
+                const author = document.getElementById('poem-author');
+                const guide = document.getElementById('guide-text');
+
+                const poem = poems[Math.floor(Math.random() * poems.length)];
+                content.innerText = poem.text;
+                author.innerText = `${poem.author}（${poem.era}）`;
+
+                wrapper.style.display = 'block';
+                guide.style.opacity = '0';
+
+                // 触发 CSS 动画
+                setTimeout(() => {
+                    tanzaku.classList.add('unrolled');
+                    content.classList.add('text-fade-in');
+                    author.classList.add('text-fade-in');
+                }, 50);
+            }
+
+            function hideTanzaku() {
+                const tanzaku = document.getElementById('tanzaku');
+                const content = document.getElementById('poem-content');
+                const author = document.getElementById('poem-author');
+
+                // 先淡出文字，再收起卷轴
+                content.classList.remove('text-fade-in');
+                author.classList.remove('text-fade-in');
+
+                setTimeout(() => {
+                    tanzaku.classList.remove('unrolled');
+                    setTimeout(() => {
+                        document.getElementById('tanzaku-wrapper').style.display = 'none';
+                        document.getElementById('guide-text').style.opacity = '1';
+                    }, 1000);
+                }, 300);
+            }
+
+            function initExpSnow() {
+                const snowCont = document.getElementById('exp-snow');
+                if (snowCont.children.length > 0) return;
+                for (let i = 0; i < 60; i++) {
+                    const snow = document.createElement('div');
+                    snow.style.cssText = `position:absolute; background:white; border-radius:50%; opacity:0.4; pointer-events:none;`;
+                    const size = Math.random() * 2 + 1 + 'px';
+                    snow.style.width = size;
+                    snow.style.height = size;
+                    snow.style.left = Math.random() * 100 + '%';
+                    snow.style.top = Math.random() * 100 + '%';
+                    snow.animate([
+                        { transform: 'translateY(0) rotate(0)', opacity: 0.2 },
+                        { transform: 'translateY(100px) rotate(360deg)', opacity: 0.6 }
+                    ], { duration: Math.random() * 4000 + 3000, iterations: Infinity, direction: 'alternate' });
+                    snowCont.appendChild(snow);
+                }
+            }
+
+            // 基础层落雪
             (function () {
-                const card = document.getElementById('new-year-card-2026');
-                const snowContainer = document.getElementById('snow-container');
-                const fwContainer = document.getElementById('fireworks-container');
-
-                function createSnow() {
-                    for (let i = 0; i < 60; i++) {
-                        const snow = document.createElement('div');
-                        snow.className = 'snowflake';
-                        const size = Math.random() * 3 + 2 + 'px';
-                        snow.style.width = size;
-                        snow.style.height = size;
-                        snow.style.left = Math.random() * 100 + '%';
-                        snow.style.top = '-' + Math.random() * 20 + 'px';
-                        snow.style.animationDuration = (Math.random() * 4 + 3) + 's';
-                        snow.style.animationDelay = Math.random() * 5 + 's';
-                        snowContainer.appendChild(snow);
-                    }
+                const fsnow = document.getElementById('footer-snow');
+                for (let i = 0; i < 40; i++) {
+                    const s = document.createElement('div');
+                    const size = Math.random() * 3 + 1 + 'px';
+                    s.style.cssText = `position:absolute; background:white; border-radius:50%; opacity:0.5; width:${size}; height:${size};`;
+                    s.style.left = Math.random() * 100 + '%';
+                    s.style.top = '-' + Math.random() * 50 + 'px';
+                    s.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(550px)' }],
+                        { duration: Math.random() * 4000 + 4000, iterations: Infinity });
+                    fsnow.appendChild(s);
                 }
-
-                function launchFirework() {
-                    const x = Math.random() * card.offsetWidth;
-                    const y = Math.random() * (card.offsetHeight * 0.5);
-                    // 烟花也主要采用冷色调和白色，配合白色文字
-                    const colors = ['#ffffff', '#00d4ff', '#b8c6db', '#f5f7fa', '#ffffff'];
-                    const color = colors[Math.floor(Math.random() * colors.length)];
-
-                    for (let i = 0; i < 35; i++) {
-                        const p = document.createElement('div');
-                        p.className = 'firework-particle';
-                        p.style.backgroundColor = color;
-                        p.style.boxShadow = `0 0 6px ${color}`;
-                        p.style.left = x + 'px';
-                        p.style.top = y + 'px';
-
-                        const angle = Math.random() * Math.PI * 2;
-                        const distance = Math.random() * 100 + 50;
-                        p.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
-                        p.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
-
-                        fwContainer.appendChild(p);
-                        setTimeout(() => p.remove(), 1200);
-                    }
-                }
-
-                createSnow();
-                setInterval(launchFirework, 2000);
-                setTimeout(launchFirework, 500);
             })();
         </script>
     </div>
-    <!-- 白色大气版新年贺卡组件结束 -->
+    <!-- 组件结束 -->
 </body>
 
 </html>
