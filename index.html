@@ -695,24 +695,24 @@
             };
         });
     </script>
-    <!-- 和风新年贺卡 - 完美排版版 -->
+    - 和风新年贺卡 - 精致柳叶短册版 -->
     <div id="new-year-card-2026"
         style="position: relative; width: 100%; height: 500px; background: linear-gradient(to bottom, #000814, #001d3d, #003566); overflow: hidden; margin-top: 50px;">
 
         <!-- 1. 底部跳转按钮 -->
         <div style="position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%); z-index: 20;">
             <button onclick="openNewYearExperience()" style="
-                padding: 12px 35px; 
-                background: rgba(255,255,255,0.05); 
-                color: white; 
-                border: 1px solid rgba(255,255,255,0.4); 
-                cursor: pointer; 
-                font-family: 'YuMincho', serif; 
-                font-size: 1rem; 
-                letter-spacing: 3px;
-                transition: all 0.4s;
-                backdrop-filter: blur(8px);
-            ">
+            padding: 10px 30px; 
+            background: rgba(255,255,255,0.05); 
+            color: white; 
+            border: 1px solid rgba(255,255,255,0.4); 
+            cursor: pointer; 
+            font-family: 'YuMincho', 'MS Mincho', serif; 
+            font-size: 0.9rem; 
+            letter-spacing: 3px;
+            transition: all 0.4s;
+            backdrop-filter: blur(8px);
+        ">
                 新春の風を吹く →
             </button>
         </div>
@@ -723,8 +723,9 @@
         </div>
         <div
             style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; width: 90%;">
-            <h1 style="font-family: serif; font-size: clamp(3rem, 8vw, 5rem); letter-spacing: 12px; margin:0;">2026</h1>
-            <p style="font-family: 'YuMincho', serif; font-size: 1.1rem; opacity: 0.8; letter-spacing: 4px;">
+            <h1 style="font-family: serif; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: 10px; margin:0;">2026
+            </h1>
+            <p style="font-family: 'YuMincho', serif; font-size: 1rem; opacity: 0.8; letter-spacing: 4px;">
                 あけましておめでとうございます
             </p>
         </div>
@@ -735,44 +736,53 @@
         <!-- 2. 全屏交互模式 -->
         <div id="experience-overlay"
             style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000b1a; z-index: 9999; overflow: hidden; cursor: crosshair;">
+            <!-- 关闭按钮 -->
             <div onclick="closeNewYearExperience()"
-                style="position: absolute; top: 30px; right: 30px; color: white; cursor: pointer; font-size: 28px; z-index: 10001; opacity: 0.6;">
+                style="position: absolute; top: 25px; right: 25px; color: white; cursor: pointer; font-size: 24px; z-index: 10001; opacity: 0.5;">
                 ✕</div>
+
             <div id="exp-snow" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></div>
             <div id="exp-fireworks" style="position: absolute; width: 100%; height: 100%;"></div>
 
             <div id="guide-text"
-                style="position: absolute; bottom: 60px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.4); font-family: 'YuMincho', serif; letter-spacing: 4px; pointer-events: none;">
+                style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.4); font-family: 'YuMincho', serif; font-size: 0.8rem; letter-spacing: 2px; pointer-events: none;">
                 夜空をタップして、言葉を灯す</div>
 
-            <!-- 短册 (纸条) -->
+            <!-- 柳叶短册容器 -->
             <div id="tanzaku-wrapper"
                 style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10002;">
                 <div id="tanzaku" onclick="hideTanzaku()" style="
-                    position: relative;
-                    width: 160px;
-                    height: 480px;
-                    background-color: #F7E3AF;
-                    background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.01) 0px, rgba(0,0,0,0.01) 1px, transparent 1px, transparent 10px);
-                    box-shadow: 0 20px 60px rgba(0,0,0,0.7);
-                    border-left: 4px solid #D43E2D;
-                    padding: 40px 30px;
-                    writing-mode: vertical-rl; /* 竖排关键 */
-                    clip-path: inset(0 0 100% 0);
-                    transition: clip-path 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-                    display: flex;
-                    flex-direction: column;
-                ">
-                    <!-- 诗句内容 -->
-                    <div id="poem-content"
-                        style="font-family: 'YuMincho', serif; font-size: 1.4rem; color: #222; letter-spacing: 6px; line-height: 1.8; flex-grow: 1; opacity: 0; transition: opacity 0.8s 0.8s;">
-                        <!-- 动态生成分句 -->
-                    </div>
-                    <!-- 作者和年代 -->
-                    <div id="poem-meta"
-                        style="font-family: 'YuMincho', serif; font-size: 0.85rem; color: #666; text-align: right; margin-top: 20px; opacity: 0; transition: opacity 0.8s 1.3s;">
-                        <span id="poem-author"></span>
-                        <span id="poem-era" style="margin-top: 10px; opacity: 0.7;"></span>
+                position: relative;
+                width: 180px;
+                max-width: 80vw;
+                height: 85vh; /* 响应式高度，确保不超出屏幕 */
+                background-color: #ffffff;
+                /* 柳叶暗纹背景 SVG */
+                background-image: url(&quot;data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 30 Q 30 10 50 30 T 90 30' fill='none' stroke='%23eeeeee' stroke-width='1'/%3E%3Cpath d='M20 50 Q 40 30 60 50 T 100 50' fill='none' stroke='%23f5f5f5' stroke-width='1'/%3E%3C/svg%3E&quot;);
+                box-shadow: 0 10px 50px rgba(0,0,0,0.5);
+                border-left: 3px solid #D43E2D;
+                padding: 40px 20px;
+                writing-mode: vertical-rl;
+                clip-path: inset(0 0 100% 0);
+                transition: clip-path 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+                box-sizing: border-box;
+                overflow: hidden;
+            ">
+                    <!-- 诗文主容器 -->
+                    <div id="poem-container"
+                        style="height: 100%; opacity: 0; transition: opacity 0.8s 0.8s; display: flex; flex-direction: column;">
+                        <!-- 诗句 -->
+                        <div id="poem-content"
+                            style="font-family: 'YuMincho', 'MS Mincho', serif; font-size: 1.1rem; color: #333; letter-spacing: 4px; line-height: 2.2; flex: 1;">
+                        </div>
+                        <!-- 作者和年代 -->
+                        <div style="margin-top: auto; padding-right: 15px; border-right: 1px solid #eee;">
+                            <div id="poem-author"
+                                style="font-family: 'YuMincho', serif; font-size: 0.85rem; color: #555; margin-bottom: 8px;">
+                            </div>
+                            <div id="poem-era" style="font-family: 'YuMincho', serif; font-size: 0.75rem; color: #999;">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -788,14 +798,11 @@
             }
 
             .poem-line {
-                margin-left: 15px;
+                margin-left: 12px;
             }
-
-            /* 分句之间的间距 */
         </style>
 
         <script>
-            // 这里的 lines 数组实现了精准换行
             const poems = [
                 { lines: ["新春や", "去年より少し", "暖けき"], author: "正岡子規", era: "明治三十年" },
                 { lines: ["めでたさも", "中くらいなり", "おらが春"], author: "小林一茶", era: "文化十六年" },
@@ -825,14 +832,14 @@
 
             function createFireworkEffect(x, y) {
                 const container = document.getElementById('exp-fireworks');
-                const colors = ['#ffffff', '#D43E2D', '#F7E3AF', '#C1AB05'];
+                const colors = ['#ffffff', '#D43E2D', '#FFD700', '#ADD8E6'];
                 const color = colors[Math.floor(Math.random() * colors.length)];
-                for (let i = 0; i < 40; i++) {
+                for (let i = 0; i < 35; i++) {
                     const p = document.createElement('div');
-                    p.style.cssText = `position:absolute; left:${x}px; top:${y}px; width:3px; height:3px; border-radius:50%; background:${color}; box-shadow:0 0 8px ${color}; pointer-events:none;`;
+                    p.style.cssText = `position:absolute; left:${x}px; top:${y}px; width:2px; height:2px; border-radius:50%; background:${color}; box-shadow:0 0 5px ${color}; pointer-events:none;`;
                     const angle = Math.random() * Math.PI * 2;
-                    const dist = Math.random() * 140 + 40;
-                    p.animate([{ transform: 'translate(0, 0) scale(1)', opacity: 1 }, { transform: `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px) scale(0)`, opacity: 0 }], { duration: 1000, easing: 'ease-out' });
+                    const dist = Math.random() * 120 + 30;
+                    p.animate([{ transform: 'translate(0, 0)', opacity: 1 }, { transform: `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px)`, opacity: 0 }], { duration: 1000, easing: 'ease-out' });
                     container.appendChild(p);
                     setTimeout(() => p.remove(), 1000);
                 }
@@ -841,21 +848,20 @@
             function showTanzaku() {
                 const wrapper = document.getElementById('tanzaku-wrapper');
                 const tanzaku = document.getElementById('tanzaku');
+                const container = document.getElementById('poem-container');
                 const content = document.getElementById('poem-content');
                 const author = document.getElementById('poem-author');
                 const era = document.getElementById('poem-era');
                 const guide = document.getElementById('guide-text');
 
-                // 随机抽取
                 const poem = poems[Math.floor(Math.random() * poems.length)];
 
-                // 清空并重新构建分句 HTML
                 content.innerHTML = "";
                 poem.lines.forEach(line => {
-                    const lineDiv = document.createElement('div');
-                    lineDiv.className = "poem-line";
-                    lineDiv.innerText = line;
-                    content.appendChild(lineDiv);
+                    const l = document.createElement('div');
+                    l.className = "poem-line";
+                    l.innerText = line;
+                    content.appendChild(l);
                 });
 
                 author.innerText = poem.author;
@@ -866,16 +872,15 @@
 
                 setTimeout(() => {
                     tanzaku.classList.add('unrolled');
-                    content.classList.add('visible');
-                    document.getElementById('poem-meta').classList.add('visible');
+                    container.classList.add('visible');
                 }, 50);
             }
 
             function hideTanzaku() {
                 const tanzaku = document.getElementById('tanzaku');
+                const container = document.getElementById('poem-container');
+                container.classList.remove('visible');
                 tanzaku.classList.remove('unrolled');
-                document.getElementById('poem-content').classList.remove('visible');
-                document.getElementById('poem-meta').classList.remove('visible');
                 setTimeout(() => {
                     document.getElementById('tanzaku-wrapper').style.display = 'none';
                     document.getElementById('guide-text').style.opacity = '1';
@@ -885,18 +890,18 @@
             function initExpSnow() {
                 const snowCont = document.getElementById('exp-snow');
                 if (snowCont.children.length > 0) return;
-                for (let i = 0; i < 60; i++) {
+                for (let i = 0; i < 50; i++) {
                     const s = document.createElement('div');
                     s.style.cssText = `position:absolute; background:white; border-radius:50%; opacity:0.3; pointer-events:none; width:2px; height:2px;`;
                     s.style.left = Math.random() * 100 + '%'; s.style.top = Math.random() * 100 + '%';
-                    s.animate([{ transform: 'translateY(0)', opacity: 0.2 }, { transform: 'translateY(60px)', opacity: 0.5 }], { duration: Math.random() * 3000 + 2000, iterations: Infinity, direction: 'alternate' });
+                    s.animate([{ opacity: 0.1 }, { opacity: 0.5 }], { duration: Math.random() * 2000 + 2000, iterations: Infinity, direction: 'alternate' });
                     snowCont.appendChild(s);
                 }
             }
 
             (function () {
                 const fsnow = document.getElementById('footer-snow');
-                for (let i = 0; i < 30; i++) {
+                for (let i = 0; i < 25; i++) {
                     const s = document.createElement('div');
                     s.style.cssText = `position:absolute; background:white; border-radius:50%; opacity:0.4; width:2px; height:2px;`;
                     s.style.left = Math.random() * 100 + '%'; s.style.top = '-' + Math.random() * 50 + 'px';
