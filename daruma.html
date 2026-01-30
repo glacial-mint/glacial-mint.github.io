@@ -1,0 +1,514 @@
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY DARUMA 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Noto+Sans+JP:wght@500;700&family=Shippori+Mincho:wght@700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #fcf9f2;
+            color: #2c2c2c;
+        }
+
+        .font-eng {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .font-jp-serif {
+            font-family: 'Shippori Mincho', serif;
+        }
+
+        /* 动画定义 */
+        .daruma-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .daruma-wobble {
+            animation: wobble 0.8s ease-in-out;
+            transform-origin: bottom center;
+        }
+
+        @keyframes wobble {
+
+            0%,
+            100% {
+                transform: rotate(0deg);
+            }
+
+            20% {
+                transform: rotate(-6deg);
+            }
+
+            40% {
+                transform: rotate(4deg);
+            }
+
+            60% {
+                transform: rotate(-2deg);
+            }
+
+            80% {
+                transform: rotate(1deg);
+            }
+        }
+
+        /* 按钮样式 */
+        .btn-base {
+            transition: all 0.2s;
+            border: 2px solid #e5e7eb;
+            background-color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn-selected {
+            background-color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-width: 2px;
+        }
+
+        /* 和纸背景 */
+        .washi-paper {
+            background-color: #fff;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d1d5db' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col items-center py-8 px-4 overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="text-center mb-6 z-10">
+        <p class="font-eng text-xs font-bold tracking-[0.2em] text-red-600 mb-1">MY NEW YEAR WISH</p>
+        <h1 class="font-eng text-5xl md:text-7xl font-black text-slate-900 tracking-tighter drop-shadow-sm">MY DARUMA
+        </h1>
+        <p class="mt-2 text-sm text-gray-500 font-jp-serif tracking-widest">3つの色を選んで、2026年の願いを込めよう。</p>
+    </header>
+
+    <!-- Main Stage -->
+    <main class="w-full max-w-5xl grid md:grid-cols-2 gap-8 items-center relative z-10">
+
+        <!-- Left: Daruma Display -->
+        <div class="relative flex justify-center items-center h-[500px] cursor-pointer group" onclick="triggerWobble()">
+
+            <div
+                class="absolute top-10 text-xs text-gray-300 font-bold tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">
+                TAP TO WOBBLE
+            </div>
+
+            <!-- 达摩 Wrapper -->
+            <div id="daruma-wrapper" class="daruma-float relative w-[360px] h-[380px]">
+
+                <!-- 1. 纯色填充层 (无光泽，只负责颜色) -->
+                <!-- clip-path 确保颜色不溢出 -->
+                <div id="daruma-fill-container" class="absolute inset-0 z-0">
+                    <div id="daruma-color-bg" class="w-full h-full transition-all duration-700 ease-in-out"
+                        style="background: #e5e5e5; clip-path: path('M180 375 C250 375 355 330 355 210 C355 100 280 5 180 5 C80 5 5 100 5 210 C5 330 110 375 180 375 Z');">
+                    </div>
+                </div>
+
+                <!-- 2. SVG 层：玻璃光泽 + 描边 + 五官 -->
+                <svg viewBox="0 0 360 380" xmlns="http://www.w3.org/2000/svg"
+                    class="relative z-10 w-full h-full drop-shadow-2xl">
+                    <defs>
+                        <!-- 玻璃光泽渐变：四周发光，中间透明 -->
+                        <radialGradient id="glass-halo" cx="50%" cy="50%" r="65%">
+                            <stop offset="60%" stop-color="white" stop-opacity="0" /> <!-- 中心透出颜色 -->
+                            <stop offset="85%" stop-color="white" stop-opacity="0.2" /> <!-- 过渡 -->
+                            <stop offset="100%" stop-color="white" stop-opacity="0.5" /> <!-- 边缘发光 -->
+                        </radialGradient>
+
+                        <!-- 顶部高光 (假反光) -->
+                        <linearGradient id="top-shine" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="white" stop-opacity="0.6" />
+                            <stop offset="100%" stop-color="white" stop-opacity="0" />
+                        </linearGradient>
+                    </defs>
+
+                    <!-- A. 玻璃光泽层 (填充渐变) -->
+                    <path
+                        d="M180 375 C250 375 355 330 355 210 C355 100 280 5 180 5 C80 5 5 100 5 210 C5 330 110 375 180 375 Z"
+                        fill="url(#glass-halo)" />
+
+                    <!-- B. 边缘描边 (关键：制造四周均匀的白边) -->
+                    <path
+                        d="M180 375 C250 375 355 330 355 210 C355 100 280 5 180 5 C80 5 5 100 5 210 C5 330 110 375 180 375 Z"
+                        fill="none" stroke="white" stroke-width="4" stroke-opacity="0.4" />
+
+                    <!-- C. 顶部高光 (额外增加一点立体感) -->
+                    <ellipse cx="180" cy="50" rx="60" ry="25" fill="url(#top-shine)" opacity="0.4" />
+
+                    <!-- D. 五官组 -->
+                    <g transform="translate(0, -25)">
+                        <!-- 脸白 -->
+                        <path
+                            d="M180 60 C240 60 285 90 285 145 C285 200 240 230 180 230 C120 230 75 200 75 145 C75 90 120 60 180 60 Z"
+                            fill="#ffffff" stroke="none" />
+
+                        <!-- 眉毛 (鹤) -->
+                        <path d="M85 105 Q100 75 140 90 C130 90 115 90 105 110" fill="#111" stroke="#111"
+                            stroke-width="3" stroke-linecap="round" />
+                        <path d="M275 105 Q260 75 220 90 C230 90 245 90 255 110" fill="#111" stroke="#111"
+                            stroke-width="3" stroke-linecap="round" />
+
+                        <!-- 胡须 (龟) -->
+                        <path d="M80 165 Q105 195 160 180 Q130 180 100 160" fill="#111" stroke="#111"
+                            stroke-width="2" />
+                        <path d="M280 165 Q255 195 200 180 Q230 180 260 160" fill="#111" stroke="#111"
+                            stroke-width="2" />
+
+                        <!-- 鼻子 -->
+                        <path d="M160 195 Q180 185 200 195" fill="none" stroke="#111" stroke-width="3"
+                            stroke-linecap="round" />
+
+                        <!-- 嘴巴 (红) -->
+                        <path d="M165 208 Q180 202 195 208" fill="none" stroke="#dc2626" stroke-width="4"
+                            stroke-linecap="round" />
+
+                        <!-- 眼下红妆 -->
+                        <path d="M150 175 Q160 165 170 175" fill="none" stroke="#dc2626" stroke-width="4"
+                            stroke-linecap="round" />
+                        <path d="M190 175 Q200 165 210 175" fill="none" stroke="#dc2626" stroke-width="4"
+                            stroke-linecap="round" />
+
+                        <!-- 眼睛 (大眼) -->
+                        <circle cx="125" cy="135" r="28" fill="white" stroke="#111" stroke-width="3" />
+                        <circle cx="235" cy="135" r="28" fill="white" stroke="#111" stroke-width="3" />
+
+                        <!-- 左眼珠 (JS控制) -->
+                        <circle id="eye-left" cx="125" cy="135" r="14" fill="#111"
+                            class="opacity-0 transition-opacity duration-500" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Right: Control Panel -->
+        <div class="bg-white/90 backdrop-blur p-6 rounded-2xl border border-gray-100 shadow-xl max-w-md mx-auto w-full">
+            <div class="flex justify-between items-end mb-4">
+                <h3 class="font-eng text-xs font-bold text-gray-400 tracking-widest">KEYWORDS</h3>
+                <span class="text-xs font-bold bg-red-100 text-red-600 px-2 py-1 rounded" id="count-badge">0 / 3</span>
+            </div>
+
+            <div id="keyword-grid" class="grid grid-cols-3 gap-3 mb-6">
+                <!-- JS Generated -->
+            </div>
+
+            <button onclick="generateCard()"
+                class="group w-full bg-slate-900 text-white font-jp-serif font-bold py-4 rounded-xl hover:bg-red-700 transition-all shadow-lg flex items-center justify-center gap-2 overflow-hidden relative">
+                <span class="relative z-10">祈願カードを作成</span>
+                <span class="relative z-10 group-hover:translate-x-1 transition-transform">→</span>
+            </button>
+
+            <div class="text-center mt-3">
+                <button onclick="resetDaruma()"
+                    class="text-xs text-gray-400 hover:text-red-500 font-bold tracking-wide">
+                    リセット (RESET)
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Result Modal -->
+    <div id="result-modal"
+        class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-500">
+
+        <!-- Card Content -->
+        <div class="relative washi-paper w-full max-w-sm rounded-t-3xl rounded-b-lg overflow-hidden shadow-2xl transform scale-95 transition-transform duration-500 border-8 border-[#8b4513]"
+            id="modal-content">
+
+            <!-- Decoration -->
+            <div
+                class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-6 h-6 bg-red-600 rounded-full shadow border-2 border-white z-20">
+            </div>
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-12 bg-red-800 z-10"></div>
+
+            <div class="p-8 pt-12 flex flex-col items-center text-center">
+                <h2 class="font-eng text-2xl font-black text-slate-900 mb-2">MY DARUMA</h2>
+                <p class="text-[10px] text-gray-400 tracking-[0.3em] uppercase mb-6">2026 New Year's Resolution</p>
+
+                <!-- Result Daruma (Perfectly Aligned) -->
+                <!-- 使用与主舞台完全一致的 SVG viewbox 和结构，只是容器变小 -->
+                <div class="relative w-36 h-[152px] mb-6">
+
+                    <!-- 嵌入完整 SVG -->
+                    <svg viewBox="0 0 360 380" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-lg">
+                        <defs>
+                            <!-- 复制一份 Glass Halo 给结果页 -->
+                            <radialGradient id="glass-halo-res" cx="50%" cy="50%" r="65%">
+                                <stop offset="60%" stop-color="white" stop-opacity="0" />
+                                <stop offset="85%" stop-color="white" stop-opacity="0.2" />
+                                <stop offset="100%" stop-color="white" stop-opacity="0.5" />
+                            </radialGradient>
+                            <linearGradient id="top-shine-res" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="white" stop-opacity="0.6" />
+                                <stop offset="100%" stop-color="white" stop-opacity="0" />
+                            </linearGradient>
+                            <!-- 动态颜色 ID -->
+                            <linearGradient id="result-dynamic-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <!-- JS 修改 stop -->
+                                <stop offset="0%" stop-color="#ddd" />
+                            </linearGradient>
+                        </defs>
+
+                        <!-- 1. 颜色层 -->
+                        <path id="result-svg-bg"
+                            d="M180 375 C250 375 355 330 355 210 C355 100 280 5 180 5 C80 5 5 100 5 210 C5 330 110 375 180 375 Z"
+                            fill="#e5e5e5" />
+
+                        <!-- 2. 光泽层 -->
+                        <path
+                            d="M180 375 C250 375 355 330 355 210 C355 100 280 5 180 5 C80 5 5 100 5 210 C5 330 110 375 180 375 Z"
+                            fill="url(#glass-halo-res)" />
+
+                        <!-- 3. 描边层 (白边) -->
+                        <path
+                            d="M180 375 C250 375 355 330 355 210 C355 100 280 5 180 5 C80 5 5 100 5 210 C5 330 110 375 180 375 Z"
+                            fill="none" stroke="white" stroke-width="6" stroke-opacity="0.5" /> <!-- 稍微加粗一点点在小图上更明显 -->
+
+                        <!-- 4. 顶部高光 -->
+                        <ellipse cx="180" cy="50" rx="60" ry="25" fill="url(#top-shine-res)" opacity="0.4" />
+
+                        <!-- 5. 五官 -->
+                        <g transform="translate(0, -25)">
+                            <path
+                                d="M180 60 C240 60 285 90 285 145 C285 200 240 230 180 230 C120 230 75 200 75 145 C75 90 120 60 180 60 Z"
+                                fill="#ffffff" />
+                            <path d="M85 105 Q100 75 140 90 C130 90 115 90 105 110" fill="#111" stroke="#111"
+                                stroke-width="3" stroke-linecap="round" />
+                            <path d="M275 105 Q260 75 220 90 C230 90 245 90 255 110" fill="#111" stroke="#111"
+                                stroke-width="3" stroke-linecap="round" />
+                            <path d="M80 165 Q105 195 160 180 Q130 180 100 160" fill="#111" stroke="#111"
+                                stroke-width="2" />
+                            <path d="M280 165 Q255 195 200 180 Q230 180 260 160" fill="#111" stroke="#111"
+                                stroke-width="2" />
+                            <path d="M160 195 Q180 185 200 195" fill="none" stroke="#111" stroke-width="3"
+                                stroke-linecap="round" />
+                            <path d="M165 208 Q180 202 195 208" fill="none" stroke="#dc2626" stroke-width="4"
+                                stroke-linecap="round" />
+                            <path d="M150 175 Q160 165 170 175" fill="none" stroke="#dc2626" stroke-width="4"
+                                stroke-linecap="round" />
+                            <path d="M190 175 Q200 165 210 175" fill="none" stroke="#dc2626" stroke-width="4"
+                                stroke-linecap="round" />
+                            <circle cx="125" cy="135" r="28" fill="white" stroke="#111" stroke-width="3" />
+                            <circle cx="235" cy="135" r="28" fill="white" stroke="#111" stroke-width="3" />
+                            <!-- 结果页显示左眼 -->
+                            <circle cx="125" cy="135" r="14" fill="#111" />
+                        </g>
+                    </svg>
+                </div>
+
+                <!-- Wishes -->
+                <div class="w-full bg-[#f8f5e6] rounded-xl p-5 border border-[#e8dfc5]">
+                    <h3 class="font-jp-serif text-sm text-gray-500 mb-3 border-b border-gray-300 pb-2">二〇二六年の祈願</h3>
+                    <ul id="wish-list" class="space-y-3 text-left">
+                        <!-- JS 填充 -->
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="bg-[#8b4513] p-3 flex gap-3">
+                <button onclick="closeModal()"
+                    class="flex-1 py-3 text-xs font-bold text-[#8b4513] bg-white rounded shadow hover:bg-gray-100 transition-colors">
+                    戻る
+                </button>
+                <button onclick="alert('画像を保存してください (スクリーンショット)')"
+                    class="flex-1 py-3 text-xs font-bold text-white bg-red-600 rounded shadow hover:bg-red-500 transition-colors">
+                    画像を保存
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const keywordData = [
+            { id: 'study', label: '勉強', color: '#3b82f6', bg: 'bg-blue-50', text: 'text-blue-600', wish: '学業成就', desc: '努力が実を結ぶ' },
+            { id: 'health', label: '健康', color: '#22c55e', bg: 'bg-green-50', text: 'text-green-600', wish: '無病息災', desc: '健やかな一年' },
+            { id: 'love', label: '恋愛', color: '#ec4899', bg: 'bg-pink-50', text: 'text-pink-600', wish: '恋愛成就', desc: '良縁に恵まれる' },
+            { id: 'work', label: '仕事', color: '#f59e0b', bg: 'bg-yellow-50', text: 'text-yellow-600', wish: '商売繁盛', desc: 'キャリアの飛躍' },
+            { id: 'meet', label: '出会', color: '#f97316', bg: 'bg-orange-50', text: 'text-orange-600', wish: '千客万来', desc: '素敵な出会い' },
+            { id: 'hobby', label: '趣味', color: '#a855f7', bg: 'bg-purple-50', text: 'text-purple-600', wish: '趣味充実', desc: '感性を磨く' },
+            { id: 'challenge', label: '挑戦', color: '#ef4444', bg: 'bg-red-50', text: 'text-red-600', wish: '勇気凛々', desc: '恐れずに挑む' },
+            { id: 'discovery', label: '発見', color: '#06b6d4', bg: 'bg-cyan-50', text: 'text-cyan-600', wish: '温故知新', desc: '新しい発見' },
+            { id: 'continue', label: '継続', color: '#78716c', bg: 'bg-stone-50', text: 'text-stone-600', wish: '不撓不屈', desc: '諦めない心' },
+            { id: 'change', label: '変化', color: '#14b8a6', bg: 'bg-teal-50', text: 'text-teal-600', wish: '心機一転', desc: '良い変化' },
+            { id: 'achieve', label: '達成', color: '#be123c', bg: 'bg-rose-50', text: 'text-rose-600', wish: '大願成就', desc: '夢を叶える' },
+            { id: 'growth', label: '成長', color: '#6366f1', bg: 'bg-indigo-50', text: 'text-indigo-600', wish: '日進月歩', desc: '昨日の自分超え' }
+        ];
+
+        let selectedIds = [];
+        const MAX_SELECTION = 3;
+
+        // Init
+        const grid = document.getElementById('keyword-grid');
+        keywordData.forEach(item => {
+            const btn = document.createElement('button');
+            btn.className = `btn-base w-full h-12 rounded-lg font-bold text-sm text-gray-600 ${item.text} hover:bg-white`;
+            btn.innerHTML = item.label;
+            btn.onclick = () => toggleSelection(item.id, btn);
+            grid.appendChild(btn);
+        });
+
+        function toggleSelection(id, btn) {
+            const index = selectedIds.indexOf(id);
+            const data = keywordData.find(k => k.id === id);
+
+            if (index > -1) {
+                selectedIds.splice(index, 1);
+                btn.classList.remove('btn-selected');
+                btn.style.borderColor = '#e5e7eb';
+            } else {
+                if (selectedIds.length >= MAX_SELECTION) {
+                    btn.classList.add('animate-pulse');
+                    setTimeout(() => btn.classList.remove('animate-pulse'), 200);
+                    return;
+                }
+                selectedIds.push(id);
+                btn.classList.add('btn-selected');
+                btn.style.borderColor = data.color;
+            }
+
+            document.getElementById('count-badge').innerText = `${selectedIds.length} / ${MAX_SELECTION}`;
+            updateDaruma();
+            if (index === -1) triggerWobble();
+        }
+
+        function triggerWobble() {
+            const wrapper = document.getElementById('daruma-wrapper');
+            wrapper.classList.remove('daruma-wobble', 'daruma-float');
+            void wrapper.offsetWidth;
+            wrapper.classList.add('daruma-wobble');
+            setTimeout(() => {
+                wrapper.classList.remove('daruma-wobble');
+                wrapper.classList.add('daruma-float');
+            }, 800);
+        }
+
+        function updateDaruma() {
+            const bgDiv = document.getElementById('daruma-color-bg');
+            const eyeLeft = document.getElementById('eye-left');
+
+            if (selectedIds.length === 0) {
+                bgDiv.style.background = '#e5e5e5';
+                eyeLeft.classList.add('opacity-0');
+                return;
+            }
+
+            eyeLeft.classList.remove('opacity-0');
+
+            const colors = selectedIds.map(id => keywordData.find(k => k.id === id).color);
+            let gradientStyle = '';
+
+            if (colors.length === 1) {
+                gradientStyle = colors[0];
+            } else {
+                gradientStyle = `linear-gradient(135deg, ${colors.join(', ')})`;
+            }
+            bgDiv.style.background = gradientStyle;
+        }
+
+        function resetDaruma() {
+            selectedIds = [];
+            document.getElementById('count-badge').innerText = `0 / ${MAX_SELECTION}`;
+            grid.querySelectorAll('button').forEach(btn => {
+                btn.classList.remove('btn-selected');
+                btn.style.borderColor = '#e5e7eb';
+            });
+            updateDaruma();
+            triggerWobble();
+        }
+
+        function generateCard() {
+            if (selectedIds.length === 0) {
+                alert('キーワードを少なくとも1つ選んでください。');
+                return;
+            }
+
+            const modal = document.getElementById('result-modal');
+            const content = document.getElementById('modal-content');
+            const wishList = document.getElementById('wish-list');
+            const resultSvgBg = document.getElementById('result-svg-bg');
+
+            // 1. 同步颜色
+            const colors = selectedIds.map(id => keywordData.find(k => k.id === id).color);
+            if (colors.length === 1) {
+                resultSvgBg.setAttribute('fill', colors[0]);
+            } else {
+                const grad = document.getElementById('result-dynamic-grad');
+                grad.innerHTML = '';
+                colors.forEach((c, i) => {
+                    const offset = (i / (colors.length - 1)) * 100;
+                    const stop = document.createElementNS('http://www.w3.org/2000/svg', 'stop');
+                    stop.setAttribute('offset', `${offset}%`);
+                    stop.setAttribute('stop-color', c);
+                    grad.appendChild(stop);
+                });
+                resultSvgBg.setAttribute('fill', 'url(#result-dynamic-grad)');
+            }
+
+            // 2. 生成列表
+            wishList.innerHTML = '';
+            selectedIds.forEach(id => {
+                const item = keywordData.find(k => k.id === id);
+                const li = document.createElement('li');
+                li.className = "flex items-center gap-3";
+                li.innerHTML = `
+                    <div class="w-2 h-8 rounded-full" style="background-color: ${item.color}"></div>
+                    <div>
+                        <div class="font-jp-serif font-bold text-xl text-slate-800">${item.wish}</div>
+                        <div class="text-xs text-gray-400 font-bold tracking-wider">${item.desc}</div>
+                    </div>
+                `;
+                wishList.appendChild(li);
+            });
+
+            if (selectedIds.length < 3) {
+                for (let i = 0; i < (3 - selectedIds.length); i++) {
+                    const li = document.createElement('li');
+                    li.className = "flex items-center gap-3 opacity-30";
+                    li.innerHTML = `
+                        <div class="w-2 h-8 rounded-full bg-gray-200"></div>
+                        <div class="h-8 flex items-center"><span class="text-sm text-gray-300">...</span></div>
+                    `;
+                    wishList.appendChild(li);
+                }
+            }
+
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                content.classList.remove('scale-95');
+                content.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('result-modal');
+            const content = document.getElementById('modal-content');
+            modal.classList.add('opacity-0');
+            content.classList.remove('scale-100');
+            content.classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 500);
+        }
+    </script>
+</body>
+
+</html>
