@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 
 <head>
@@ -350,7 +351,6 @@
             margin-top: 2rem;
         }
 
-        /* 视频容器 (16:9) */
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
@@ -370,12 +370,31 @@
             height: 100%;
         }
 
-        /* 详情页图片列表 */
         .image-gallery img {
             width: 100%;
             height: auto;
             margin-bottom: 1.5rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Vroid Button Style */
+        .vroid-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--accent-color);
+            color: #fff;
+            border-radius: 50px;
+            font-weight: 700;
+            font-family: var(--font-en);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(107, 94, 217, 0.3);
+            margin-bottom: 2rem;
+        }
+
+        .vroid-btn:hover {
+            background-color: var(--text-main);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(24, 24, 40, 0.4);
         }
 
         @media (max-width: 768px) {
@@ -458,7 +477,7 @@
                 <p style="margin-bottom: 3rem; color: var(--text-sub);">各画像をクリックして詳細をご覧ください。</p>
 
                 <div class="works-grid">
-                    <!-- Work 1: 伝統楽器 -->
+                    <!-- Work 1 -->
                     <article class="work-card">
                         <div class="card-click-area" onclick="openModal('modal-1')"></div>
                         <div class="work-thumbnail">
@@ -470,7 +489,7 @@
                         </div>
                     </article>
 
-                    <!-- Work 2: DREAM AI -->
+                    <!-- Work 2 -->
                     <article class="work-card">
                         <div class="card-click-area" onclick="openModal('modal-2')"></div>
                         <div class="work-thumbnail">
@@ -482,7 +501,7 @@
                         </div>
                     </article>
 
-                    <!-- Work 3: MY DARUMA -->
+                    <!-- Work 3 -->
                     <article class="work-card">
                         <div class="card-click-area" onclick="openModal('modal-3')"></div>
                         <div class="work-thumbnail">
@@ -494,7 +513,7 @@
                         </div>
                     </article>
 
-                    <!-- Work 4: 裏と表 -->
+                    <!-- Work 4 -->
                     <article class="work-card">
                         <div class="card-click-area" onclick="openModal('modal-4')"></div>
                         <div class="work-thumbnail">
@@ -506,16 +525,32 @@
                         </div>
                     </article>
 
-                    <!-- Work 5: Knitting -->
+                    <!-- Work 5: かぎ針編み学習アプリ -->
                     <article class="work-card">
+                        <div class="card-click-area" onclick="openModal('modal-5')"></div>
                         <div class="work-thumbnail">
-                            <img src="https://placehold.co/800x500/E0DDF9/6B5ED9?text=Knitting+Process" alt="Work 5">
+                            <!-- 封面: knit1 -->
+                            <img src="https://i.postimg.cc/7Ycqzzmk/knit1.jpg" alt="かぎ針編み学習アプリ">
                         </div>
                         <div class="work-info">
-                            <h3 class="work-title">Knitting Process</h3>
-                            <p class="work-desc">【Coming Soon】初心者のための編み物制作プロセスの研究。</p>
+                            <h3 class="work-title">かぎ針編み学習アプリ</h3>
+                            <p class="work-desc">初心者が躓きやすい「編み図の読み方」をサポートする学習アプリのUIデザイン。</p>
                         </div>
                     </article>
+
+                    <!-- Work 6: VTuber -->
+                    <article class="work-card">
+                        <div class="card-click-area" onclick="openModal('modal-6')"></div>
+                        <div class="work-thumbnail">
+                            <!-- 封面: aaahappyface -->
+                            <img src="https://i.postimg.cc/zXdFFzgC/aaahappyface.jpg" alt="VTuber">
+                        </div>
+                        <div class="work-info">
+                            <h3 class="work-title">VTuber Character Design</h3>
+                            <p class="work-desc">キャラクターデザインからLive2Dモデリングまで。バーチャルな存在をデザインする。</p>
+                        </div>
+                    </article>
+
                 </div>
             </div>
         </section>
@@ -528,7 +563,7 @@
     <!-- ================= MODALS ================= -->
     <div id="modal-overlay" class="modal-overlay" onclick="closeModal(event)">
 
-        <!-- Modal 1: 伝統楽器 -->
+        <!-- Modal 1 -->
         <div id="modal-1" class="modal-container" style="display:none;">
             <button class="close-btn" onclick="closeModalBtn()">×</button>
             <div class="modal-content">
@@ -537,19 +572,16 @@
                     伝統音楽楽器の可視化を主題として、TouchDesignerを使って映像を出力することです。伝統楽器の可視化技術を基に、中国伝統楽器の可視化制作に取り組みました。
 
                     TouchDesignerで音声データ分析技術やフーリエ変換を活用し、箏や笛などの伝統楽器の音色の特徴を即時的に動画に出力することで、演奏の中で個々の楽器を分離して演奏できます。</div>
-
                 <div class="modal-media">
-
-                    <!-- 🔴 VIDEO SETTING FOR WORK 1 -->
-                    <!-- 将下面的 iframe src 替换为您的 YouTube 链接 -->
-                    <!-- 如果使用本地视频，请删除 iframe，使用: <video controls src="your_video.mp4" style="width:100%"></video> -->
+                    <!-- 🔴 VIDEO 1 (PLACEHOLDER) -->
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/watch?v=w8fTOrn-avI" frameborder="0"
-                            allowfullscreen></iframe>
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/w8fTOrn-avI?si=T0JkPjhrVkweRpJY"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
-
                     <div class="image-gallery">
-                        <!-- image2 (缩略图), image1, image3 -->
                         <img src="https://i.postimg.cc/htd5fCp5/image2.jpg" alt="Thumbnail View">
                         <img src="https://i.postimg.cc/zGgcVd07/image1.jpg" alt="Detail 1">
                         <img src="https://i.postimg.cc/3xvcdLnf/image3.jpg" alt="Detail 3">
@@ -558,7 +590,7 @@
             </div>
         </div>
 
-        <!-- Modal 2: DREAM -->
+        <!-- Modal 2 -->
         <div id="modal-2" class="modal-container" style="display:none;">
             <button class="close-btn" onclick="closeModalBtn()">×</button>
             <div class="modal-content">
@@ -570,25 +602,23 @@
 
                     [使用ツール] Midjourney, Dreamina, Veo3
                     [編集] CapCut</div>
-
                 <div class="modal-media">
-
-                    <!-- 🔴 VIDEO SETTING FOR WORK 2 -->
-                    <!-- 将下面的 iframe src 替换为您的 YouTube 链接 -->
+                    <!-- 🔴 VIDEO 2 (PLACEHOLDER) -->
                     <div class="video-container">
-                        <iframe src="https://www.youtube.com/watch?v=zstxWkITl7M&feature=youtu.be" frameborder="0"
-                            allowfullscreen></iframe>
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/zstxWkITl7M?si=jWV6mGqQGb3CwKI4"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
-
                     <div class="image-gallery">
-                        <!-- image13 (缩略图) -->
                         <img src="https://i.postimg.cc/Jh5hb5pz/image13.jpg" alt="Dream AI">
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Modal 3: MY DARUMA -->
+        <!-- Modal 3 -->
         <div id="modal-3" class="modal-container" style="display:none;">
             <button class="close-btn" onclick="closeModalBtn()">×</button>
             <div class="modal-content">
@@ -598,7 +628,6 @@
                     QRコードやNFCを通じてWebにアクセスし、願いを入力することでオリジナルのだるまが生まれます。1月と12月に行う「目入れの儀式」を通して、一年をかけて願いを結ぶ体験を設計しました。</div>
                 <div class="modal-media">
                     <div class="image-gallery">
-                        <!-- image9 (缩略图), image10, 11, 12 -->
                         <img src="https://i.postimg.cc/gjwBP45b/image9.jpg" alt="Thumbnail View">
                         <img src="https://i.postimg.cc/fRy0KF6B/image10.jpg" alt="Detail">
                         <img src="https://i.postimg.cc/Cx5fNtWW/image11.jpg" alt="Detail">
@@ -608,7 +637,7 @@
             </div>
         </div>
 
-        <!-- Modal 4: 裏と表 -->
+        <!-- Modal 4 -->
         <div id="modal-4" class="modal-container" style="display:none;">
             <button class="close-btn" onclick="closeModalBtn()">×</button>
             <div class="modal-content">
@@ -618,7 +647,6 @@
                     表情の変化によって、立体アートの上に投影します。喜怒哀楽の表情を視覚的に映し出す、観客の感情表現を引き出し、インタラクティブを活用して、観客の共感を得る。</div>
                 <div class="modal-media">
                     <div class="image-gallery">
-                        <!-- image8 (缩略图), image4, 5, 6, 7 -->
                         <img src="https://i.postimg.cc/9fHNTGk3/image8.jpg" alt="Thumbnail View">
                         <img src="https://i.postimg.cc/52CR6PnG/image4.jpg" alt="Detail 4">
                         <img src="https://i.postimg.cc/g2ZTnMNQ/image5.jpg" alt="Detail 5">
@@ -629,12 +657,78 @@
             </div>
         </div>
 
+        <!-- Modal 5: かぎ針編み学習アプリ -->
+        <div id="modal-5" class="modal-container" style="display:none;">
+            <button class="close-btn" onclick="closeModalBtn()">×</button>
+            <div class="modal-content">
+                <h2>かぎ針編み学習アプリ</h2>
+                <div class="text-block">編み物を始めたい初心者のための学習サポートアプリです。
+
+                    「編み図が読めない」「手の動きがわからない」という初心者の悩みを解決するため、AR技術を活用して手元にガイドを表示したり、動画と連動したインタラクティブな編み図ビューアを設計しました。学習のハードルを下げ、作る楽しさを伝えることを目的としています。
+                </div>
+                <div class="modal-media">
+
+                    <!-- ❌ 已移除视频，直接展示图片 -->
+
+                    <div class="image-gallery">
+                        <!-- knit1 (含封面), 2-9 -->
+                        <img src="https://i.postimg.cc/7Ycqzzmk/knit1.jpg" alt="Detail 1">
+                        <img src="https://i.postimg.cc/BQyJFFMs/knit2.jpg" alt="Detail 2">
+                        <img src="https://i.postimg.cc/gk5GhhNm/knit3.jpg" alt="Detail 3">
+                        <img src="https://i.postimg.cc/kXZ7SSfn/knit4.jpg" alt="Detail 4">
+                        <img src="https://i.postimg.cc/gk5GhhNz/knit5.jpg" alt="Detail 5">
+                        <img src="https://i.postimg.cc/KvVmTTJz/knit6.jpg" alt="Detail 6">
+                        <img src="https://i.postimg.cc/qMYpKKjq/knit7.jpg" alt="Detail 7">
+                        <img src="https://i.postimg.cc/rFbq44Qw/knit8.jpg" alt="Detail 8">
+                        <img src="https://i.postimg.cc/J4gRXXPt/knit9.jpg" alt="Detail 9">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal 6: VTuber -->
+        <div id="modal-6" class="modal-container" style="display:none;">
+            <button class="close-btn" onclick="closeModalBtn()">×</button>
+            <div class="modal-content">
+                <h2>VTuber Character Design</h2>
+                <div class="text-block">オリジナルVTuberのキャラクターデザインからLive2Dモデリングまでを一貫して制作しました。
+
+                    ターゲット層に合わせたキャラクター設定とビジュアルデザインを行い、配信時の表情豊かさを実現するために、可動域の広いLive2Dモデルを構築しました。物理演算設定により、髪や服の自然な揺れも再現しています。
+                </div>
+                <div class="modal-media">
+
+                    <!-- 🔴 VIDEO 6: YouTube Placeholder -->
+                    <div class="video-container">
+                        <!-- 请将此处的 src 替换为您的 YouTube 视频链接 -->
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/qpDJSeiUOlE?si=ww7rRXIe4sdPWDCG"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+
+                    <!-- 🔗 VRoid Hub Link Button -->
+                    <div style="text-align:center;">
+                        <!-- 请将 href 替换为您实际的 VRoid Hub 链接 -->
+                        <a href="https://hub.vroid.com/" target="_blank" class="vroid-btn">
+                            View on VRoid Hub ↗
+                        </a>
+                    </div>
+
+                    <div class="image-gallery">
+                        <!-- 仅展示 vtuber1 和 vtuber2，不展示封面图 aaahappyface -->
+                        <img src="https://i.postimg.cc/NfVQXXpr/vtuber1.jpg" alt="Detail 1">
+                        <img src="https://i.postimg.cc/zXMqhh0h/vtuber2.jpg" alt="Detail 2">
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- 交互脚本 -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // 光斑排斥逻辑
             const blobs = document.querySelectorAll('.blob');
             let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
             const blobData = Array.from(blobs).map(blob => {
@@ -673,7 +767,6 @@
                 });
             });
 
-            // 弹窗逻辑
             const overlay = document.getElementById('modal-overlay');
             const modalContainers = document.querySelectorAll('.modal-container');
             window.openModal = function (modalId) {
@@ -695,223 +788,555 @@
             };
         });
     </script>
-
-    <div id="new-year-card-2026"
-        style="position: relative; width: 100%; height: 500px; background: linear-gradient(to bottom, #000814, #001d3d, #003566); overflow: hidden; margin-top: 50px;">
-
-        <!-- 1. 底部跳转按钮 -->
-        <div style="position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%); z-index: 20;">
-            <button onclick="openNewYearExperience()" style="
-            padding: 10px 30px; 
-            background: rgba(255,255,255,0.05); 
-            color: white; 
-            border: 1px solid rgba(255,255,255,0.4); 
-            cursor: pointer; 
-            font-family: 'YuMincho', 'MS Mincho', serif; 
-            font-size: 0.9rem; 
-            letter-spacing: 3px;
-            transition: all 0.4s;
-            backdrop-filter: blur(8px);
-        ">
-                新春の風を吹く →
-            </button>
+    <!-- MY DARUMA 悬浮入口组件开始 -->
+    <a href="daruma.html" class="daruma-widget" title="Make a New Year Wish">
+        <div class="daruma-icon">
+            <!-- 迷你达摩 SVG 图标 -->
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <path d="M50 5 C25 5 5 30 5 60 C5 85 20 95 50 95 C80 95 95 85 95 60 C95 30 75 5 50 5 Z"
+                    fill="#dc2626" />
+                <path d="M50 20 C65 20 75 35 75 55 C75 75 65 85 50 85 C35 85 25 75 25 55 C25 35 35 20 50 20 Z"
+                    fill="white" />
+                <circle cx="40" cy="50" r="4" fill="#1a1a1a" /> <!-- 左眼 -->
+                <circle cx="60" cy="50" r="4" fill="#1a1a1a" /> <!-- 右眼 -->
+                <path d="M35 40 Q40 35 45 38" fill="none" stroke="#1a1a1a" stroke-width="2" /> <!-- 眉毛 -->
+                <path d="M65 40 Q60 35 55 38" fill="none" stroke="#1a1a1a" stroke-width="2" />
+                <path d="M35 65 Q40 68 45 65" fill="none" stroke="#1a1a1a" stroke-width="1.5" /> <!-- 胡须 -->
+                <path d="M65 65 Q60 68 55 65" fill="none" stroke="#1a1a1a" stroke-width="1.5" />
+                <rect x="38" y="70" width="24" height="14" rx="2" fill="#fbbf24" /> <!-- 福牌 -->
+            </svg>
         </div>
+        <span class="daruma-text">MY DARUMA</span>
+    </a>
 
-        <!-- 装饰背景 -->
-        <div id="footer-snow"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
-        </div>
-        <div
-            style="position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white; width: 90%;">
-            <h1 style="font-family: serif; font-size: clamp(2.5rem, 7vw, 4.5rem); letter-spacing: 10px; margin:0;">2026
+    <style>
+        /* 悬浮按钮样式 - 独立作用域，不影响其他设计 */
+        .daruma-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            /* 确保使用通用字体 */
+        }
+
+        /* 鼠标悬停时的整体缩放和摇摆 */
+        .daruma-widget:hover {
+            transform: translateY(-5px);
+        }
+
+        .daruma-widget:hover .daruma-icon {
+            animation: mini-wobble 0.5s ease-in-out infinite alternate;
+        }
+
+        /* 图标容器 */
+        .daruma-icon {
+            width: 50px;
+            height: 50px;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+        }
+
+        /* 文字标签 */
+        .daruma-text {
+            margin-top: 6px;
+            font-size: 10px;
+            font-weight: 900;
+            color: #dc2626;
+            /* 达摩红 */
+            letter-spacing: 1px;
+            background: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            opacity: 0;
+            /* 默认隐藏文字，保持界面简洁 */
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        /* 悬停时显示文字 */
+        .daruma-widget:hover .daruma-text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 迷你摇摆动画 */
+        @keyframes mini-wobble {
+            0% {
+                transform: rotate(-10deg);
+            }
+
+            100% {
+                transform: rotate(10deg);
+            }
+        }
+
+        /* 移动端适配：防止挡住内容，稍微变小 */
+        @media (max-width: 768px) {
+            .daruma-widget {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .daruma-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .daruma-text {
+                display: none;
+                /* 手机上为了不遮挡，可以不显示文字 */
+            }
+        }
+    </style>
+    <!-- MY DARUMA 悬浮入口组件结束 -->
+    !DOCTYPE html>
+    <html lang="ja">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>MY DARUMA 2026</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <!-- 字体：Montserrat (英标题), Zen Maru Gothic (日文可爱圆体) -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap"
+            rel="stylesheet">
+
+        <style>
+            body {
+                font-family: 'Zen Maru Gothic', sans-serif;
+                background-color: #fffbeb;
+                /* 暖色米白背景 */
+                color: #4b5563;
+            }
+
+            .en-font {
+                font-family: 'Montserrat', sans-serif;
+            }
+
+            /* 悬浮呼吸动画 */
+            .float-anim {
+                animation: float 5s ease-in-out infinite;
+            }
+
+            @keyframes float {
+
+                0%,
+                100% {
+                    transform: translateY(0);
+                }
+
+                50% {
+                    transform: translateY(-8px);
+                }
+            }
+
+            /* 不倒翁摇摆动画 (物理感增强) */
+            .wobble-anim {
+                animation: wobble 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+                transform-origin: bottom center;
+            }
+
+            @keyframes wobble {
+                0% {
+                    transform: rotate(0deg);
+                }
+
+                15% {
+                    transform: rotate(-20deg);
+                }
+
+                30% {
+                    transform: rotate(15deg);
+                }
+
+                45% {
+                    transform: rotate(-10deg);
+                }
+
+                60% {
+                    transform: rotate(5deg);
+                }
+
+                100% {
+                    transform: rotate(0deg);
+                }
+            }
+
+            /* 结果卡片纹理 */
+            .card-bg {
+                background-color: #fff;
+                background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+                background-size: 10px 10px;
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+
+            /* 选中态 */
+            .btn-active {
+                background-color: #fff;
+                border-width: 2px;
+                transform: scale(1.05);
+                box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            }
+        </style>
+    </head>
+
+    <body class="min-h-screen flex flex-col items-center py-8 px-4">
+
+        <!-- Header (English) -->
+        <header class="text-center mb-10 z-10">
+            <p class="en-font text-xs font-bold text-red-500 tracking-[0.3em] mb-2">MY NEW YEAR WISH</p>
+            <h1 class="en-font text-6xl md:text-7xl font-black text-slate-800 tracking-tighter drop-shadow-sm">MY DARUMA
             </h1>
-            <p style="font-family: 'YuMincho', serif; font-size: 1rem; opacity: 0.8; letter-spacing: 4px;">
-                あけましておめでとうございます
-            </p>
-        </div>
-        <div
-            style="position: absolute; bottom: 0; width: 100%; height: 100px; background: linear-gradient(to bottom, #ffffff, #f0faff); border-radius: 50% 50% 0 0 / 30px 30px 0 0;">
-        </div>
+        </header>
 
-        <!-- 2. 全屏交互模式 -->
-        <div id="experience-overlay"
-            style="display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000b1a; z-index: 9999; overflow: hidden; cursor: crosshair;">
-            <!-- 关闭按钮 -->
-            <div onclick="closeNewYearExperience()"
-                style="position: absolute; top: 25px; right: 25px; color: white; cursor: pointer; font-size: 24px; z-index: 10001; opacity: 0.5;">
-                ✕</div>
+        <!-- Main Stage -->
+        <main class="w-full max-w-5xl grid md:grid-cols-2 gap-10 items-center">
 
-            <div id="exp-snow" style="position: absolute; width: 100%; height: 100%; pointer-events: none;"></div>
-            <div id="exp-fireworks" style="position: absolute; width: 100%; height: 100%;"></div>
+            <!-- Left: Daruma Interactive Area -->
+            <div class="relative flex justify-center items-end h-[420px] pb-4 cursor-pointer group"
+                onclick="triggerWobble()">
 
-            <div id="guide-text"
-                style="position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); color: rgba(255,255,255,0.4); font-family: 'YuMincho', serif; font-size: 0.8rem; letter-spacing: 2px; pointer-events: none;">
-                夜空をタップして、言葉を灯す</div>
+                <!-- Tooltip -->
+                <div
+                    class="absolute top-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-xs text-gray-400 font-bold tracking-widest bg-white/80 px-3 py-1 rounded-full shadow-sm">
+                    CLICK TO WOBBLE
+                </div>
 
-            <!-- 柳叶短册容器 -->
-            <div id="tanzaku-wrapper"
-                style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 10002;">
-                <div id="tanzaku" onclick="hideTanzaku()" style="
-                position: relative;
-                width: 180px;
-                max-width: 80vw;
-                height: 85vh; /* 响应式高度，确保不超出屏幕 */
-                background-color: #ffffff;
-                /* 柳叶暗纹背景 SVG */
-                background-image: url(&quot;data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 30 Q 30 10 50 30 T 90 30' fill='none' stroke='%23eeeeee' stroke-width='1'/%3E%3Cpath d='M20 50 Q 40 30 60 50 T 100 50' fill='none' stroke='%23f5f5f5' stroke-width='1'/%3E%3C/svg%3E&quot;);
-                box-shadow: 0 10px 50px rgba(0,0,0,0.5);
-                border-left: 3px solid #D43E2D;
-                padding: 40px 20px;
-                writing-mode: vertical-rl;
-                clip-path: inset(0 0 100% 0);
-                transition: clip-path 1.2s cubic-bezier(0.4, 0, 0.2, 1);
-                box-sizing: border-box;
-                overflow: hidden;
-            ">
-                    <!-- 诗文主容器 -->
-                    <div id="poem-container"
-                        style="height: 100%; opacity: 0; transition: opacity 0.8s 0.8s; display: flex; flex-direction: column;">
-                        <!-- 诗句 -->
-                        <div id="poem-content"
-                            style="font-family: 'YuMincho', 'MS Mincho', serif; font-size: 1.1rem; color: #333; letter-spacing: 4px; line-height: 2.2; flex: 1;">
-                        </div>
-                        <!-- 作者和年代 -->
-                        <div style="margin-top: auto; padding-right: 15px; border-right: 1px solid #eee;">
-                            <div id="poem-author"
-                                style="font-family: 'YuMincho', serif; font-size: 0.85rem; color: #555; margin-bottom: 8px;">
-                            </div>
-                            <div id="poem-era" style="font-family: 'YuMincho', serif; font-size: 0.75rem; color: #999;">
-                            </div>
-                        </div>
+                <!-- Wrapper -->
+                <div id="daruma-wrapper" class="float-anim relative w-[320px] h-[340px]">
+
+                    <!-- 1. Body Color Layer (Behind SVG) -->
+                    <!-- A simple circle that changes color -->
+                    <div id="body-color-layer"
+                        class="absolute left-1/2 bottom-[5px] -translate-x-1/2 w-[300px] h-[290px] rounded-[48%] transition-all duration-700 ease-out"
+                        style="background: #e2e8f0;">
                     </div>
+
+                    <!-- 2. The SVG Daruma -->
+                    <svg viewBox="0 0 320 340" xmlns="http://www.w3.org/2000/svg"
+                        class="relative z-10 w-full h-full drop-shadow-xl">
+                        <defs>
+                            <!-- 身体光泽 (让扁平色块变立体) -->
+                            <radialGradient id="gloss-overlay" cx="50%" cy="0%" r="80%">
+                                <stop offset="0%" stop-color="white" stop-opacity="0.4" />
+                                <stop offset="100%" stop-color="white" stop-opacity="0" />
+                            </radialGradient>
+                            <!-- 面部内阴影 (凹陷感) -->
+                            <filter id="face-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
+                                <feOffset dx="0" dy="2" result="offsetblur" />
+                                <feComponentTransfer>
+                                    <feFuncA type="linear" slope="0.3" />
+                                </feComponentTransfer>
+                                <feMerge>
+                                    <feMergeNode />
+                                    <feMergeNode in="SourceGraphic" />
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- A. 身体外轮廓 (遮罩作用: 中间透明，边缘有光泽) -->
+                        <!-- 造型：上窄下宽，像个不倒翁 -->
+                        <path
+                            d="M160 10 C80 10 10 90 10 190 C10 280 60 330 160 330 C260 330 310 280 310 190 C310 90 240 10 160 10 Z"
+                            fill="url(#gloss-overlay)" stroke="rgba(0,0,0,0.05)" stroke-width="1" />
+
+                        <!-- B. 肚子上的金色装饰线 (参考经典达摩) -->
+                        <g fill="none" stroke="#fbbf24" stroke-width="4" stroke-linecap="round" opacity="0.9">
+                            <!-- 左边肋骨线 -->
+                            <path d="M70 230 Q90 235 110 230" />
+                            <path d="M65 250 Q85 255 105 250" />
+                            <!-- 右边肋骨线 -->
+                            <path d="M250 230 Q230 235 210 230" />
+                            <path d="M255 250 Q235 255 215 250" />
+                        </g>
+                        <!-- 肚子中间的福字框 -->
+                        <rect x="125" y="250" width="70" height="50" rx="8" fill="#fff" stroke="#d4af37"
+                            stroke-width="2" opacity="0.9" />
+                        <text x="160" y="283" text-anchor="middle" font-family="'Zen Maru Gothic', serif"
+                            font-weight="900" font-size="28" fill="#d4af37">福</text>
+
+                        <!-- C. 面部 (椭圆形，纯白) -->
+                        <!-- 加上了 filter 让它看起来有点厚度 -->
+                        <ellipse cx="160" cy="130" rx="100" ry="85" fill="white" filter="url(#face-shadow)" />
+
+                        <!-- D. 五官细节 (重点修改部分) -->
+
+                        <!-- 1. 眉毛 (Calligraphy Style - 填充路径实现粗细变化) -->
+                        <g fill="#1a1a1a">
+                            <!-- 左眉：起笔细，中段粗，收笔细，呈圆润的鹤形 -->
+                            <path
+                                d="M75 90 C70 80 85 65 110 70 C125 73 130 85 125 90 C120 95 110 85 105 82 C95 78 85 95 75 90 Z" />
+                            <!-- 右眉：镜像 -->
+                            <path
+                                d="M245 90 C250 80 235 65 210 70 C195 73 190 85 195 90 C200 95 210 85 215 82 C225 78 235 95 245 90 Z" />
+                        </g>
+
+                        <!-- 2. 眼睛 (大眼珠，更显憨态) -->
+                        <!-- 眼白 -->
+                        <circle cx="115" cy="130" r="26" fill="white" stroke="#1a1a1a" stroke-width="3" />
+                        <circle cx="205" cy="130" r="26" fill="white" stroke="#1a1a1a" stroke-width="3" />
+                        <!-- 瞳孔 (左眼默认隐藏) -->
+                        <circle id="pupil-left" cx="115" cy="130" r="14" fill="#1a1a1a"
+                            class="opacity-0 transition-opacity duration-500" />
+                        <!-- 右眼留白 -->
+
+                        <!-- 3. 眼下装饰红线 (U型) -->
+                        <path d="M100 165 Q115 175 130 165" fill="none" stroke="#ef4444" stroke-width="4"
+                            stroke-linecap="round" opacity="0.8" />
+                        <path d="M190 165 Q205 175 220 165" fill="none" stroke="#ef4444" stroke-width="4"
+                            stroke-linecap="round" opacity="0.8" />
+
+                        <!-- 4. 胡须 (龟形 - 粗细变化的 U 型毛笔触感) -->
+                        <g fill="#1a1a1a">
+                            <!-- 左胡须：从脸颊向外撇，类似巨大的逗号或翅膀 -->
+                            <path
+                                d="M65 150 C55 160 65 180 90 190 C105 195 115 185 110 180 C100 175 90 170 85 160 C82 155 75 145 65 150 Z" />
+                            <!-- 右胡须 -->
+                            <path
+                                d="M255 150 C265 160 255 180 230 190 C215 195 205 185 210 180 C220 175 230 170 235 160 C238 155 245 145 255 150 Z" />
+                        </g>
+                        <!-- 鼻子下方的八字胡小点缀 -->
+                        <path d="M145 160 Q152 155 160 160 Q168 155 175 160" fill="none" stroke="#1a1a1a"
+                            stroke-width="3" stroke-linecap="round" />
+
+                        <!-- 5. 嘴巴 (红色，长且向下撇) -->
+                        <!-- 这里的控制点让嘴巴呈现微怒/坚毅的弧度 -->
+                        <path d="M130 185 Q160 195 190 185" fill="none" stroke="#dc2626" stroke-width="5"
+                            stroke-linecap="round" />
+
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Right: Control Panel -->
+            <div class="bg-white p-8 rounded-3xl shadow-xl border border-gray-100">
+                <h3 class="en-font text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 border-b pb-2">Select
+                    Keywords (Max 4)</h3>
+
+                <div id="keyword-grid" class="grid grid-cols-3 gap-3 mb-8">
+                    <!-- JS Generated -->
+                </div>
+
+                <div class="flex flex-col gap-3">
+                    <button onclick="generateCard()"
+                        class="w-full bg-slate-800 text-white font-bold py-4 rounded-xl hover:bg-black transition-all shadow-md flex items-center justify-center gap-2 group">
+                        <span class="en-font tracking-widest">CREATE CARD</span>
+                        <span class="group-hover:translate-x-1 transition-transform">→</span>
+                    </button>
+                    <button onclick="resetDaruma()" class="text-xs font-bold text-gray-400 hover:text-red-500 py-2">
+                        RESET ALL
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal: Result Card -->
+        <div id="modal-overlay"
+            class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+
+            <div class="relative card-bg w-full max-w-sm rounded-2xl overflow-hidden transform scale-95 transition-transform duration-300"
+                id="modal-card">
+
+                <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-red-500 z-10">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+
+                <div class="p-8 flex flex-col items-center text-center">
+                    <!-- 日本传统装饰结 -->
+                    <div class="w-12 h-1 bg-red-600 rounded-full mb-6 opacity-80"></div>
+
+                    <h2 class="text-2xl font-black text-slate-800 mb-1">私の願掛けだるま</h2>
+                    <p class="text-[10px] text-gray-400 font-bold tracking-widest mb-8">2026 NEW YEAR GOAL</p>
+
+                    <!-- Result Daruma Clone -->
+                    <div class="relative w-44 h-48 mb-6">
+                        <div id="result-color"
+                            class="absolute left-1/2 bottom-[3px] -translate-x-1/2 w-[92%] h-[88%] rounded-[48%]"></div>
+                        <div id="result-svg" class="relative z-10 w-full h-full"></div>
+                    </div>
+
+                    <!-- Tags (Japanese) -->
+                    <div id="result-tags" class="flex flex-wrap justify-center gap-2 mb-6 font-bold text-sm"></div>
+
+                    <!-- Wish Message -->
+                    <div class="w-full border-t border-dashed border-gray-300 pt-6">
+                        <p class="text-slate-600 leading-loose text-sm">
+                            2026年は、<br>
+                            <span id="wish-jp" class="text-xl font-black text-red-600"></span><br>
+                            が実る一年になりますように。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-4 text-center border-t border-gray-100">
+                    <button class="text-[10px] font-bold text-gray-400 hover:text-indigo-600 uppercase tracking-widest">
+                        Save Image (Screenshot)
+                    </button>
                 </div>
             </div>
         </div>
 
-        <style>
-            .unrolled {
-                clip-path: inset(0 0 0% 0) !important;
-            }
-
-            .visible {
-                opacity: 1 !important;
-            }
-
-            .poem-line {
-                margin-left: 12px;
-            }
-        </style>
-
         <script>
-            const poems = [
-                { lines: ["新春や", "去年より少し", "暖けき"], author: "正岡子規", era: "明治三十年" },
-                { lines: ["めでたさも", "中くらいなり", "おらが春"], author: "小林一茶", era: "文化十六年" },
-                { lines: ["元日や", "冥土の旅の", "一里塚"], author: "一休宗純", era: "室町時代" },
-                { lines: ["春の海", "ひねもすのたり", "のたりかな"], author: "与謝蕪村", era: "安永年間" },
-                { lines: ["一枝の", "梅だにだせり", "今日の春"], author: "松尾芭蕉", era: "元禄年間" },
-                { lines: ["古池や", "蛙飛びこむ", "水の音"], author: "松尾芭蕉", era: "貞享三年" }
+            // 配置：英文Label显示在按钮，日文JP显示在卡片
+            const keywords = [
+                { id: 'study', en: 'Study', jp: '学業成就', color: '#3b82f6', border: 'border-blue-200', text: 'text-blue-600' },
+                { id: 'health', en: 'Health', jp: '無病息災', color: '#22c55e', border: 'border-green-200', text: 'text-green-600' },
+                { id: 'love', en: 'Love', jp: '恋愛成就', color: '#f472b6', border: 'border-pink-200', text: 'text-pink-600' },
+                { id: 'wealth', en: 'Wealth', jp: '金運上昇', color: '#fbbf24', border: 'border-yellow-200', text: 'text-yellow-600' },
+                { id: 'business', en: 'Business', jp: '商売繁盛', color: '#334155', border: 'border-slate-300', text: 'text-slate-700' }, // 黑/深灰
+                { id: 'victory', en: 'Victory', jp: '必勝祈願', color: '#ef4444', border: 'border-red-200', text: 'text-red-600' },
+                { id: 'relation', en: 'Connect', jp: '良縁祈願', color: '#f97316', border: 'border-orange-200', text: 'text-orange-600' },
+                { id: 'art', en: 'Art', jp: '芸事上達', color: '#a855f7', border: 'border-purple-200', text: 'text-purple-600' },
+                { id: 'safety', en: 'Safety', jp: '家内安全', color: '#14b8a6', border: 'border-teal-200', text: 'text-teal-600' },
+                { id: 'travel', en: 'Travel', jp: '交通安全', color: '#06b6d4', border: 'border-cyan-200', text: 'text-cyan-600' },
+                { id: 'change', en: 'Change', jp: '心機一転', color: '#ffffff', border: 'border-gray-200', text: 'text-gray-500' }, // 白
+                { id: 'dream', en: 'Dream', jp: '大願成就', color: '#6366f1', border: 'border-indigo-200', text: 'text-indigo-600' }
             ];
 
-            function openNewYearExperience() {
-                document.getElementById('experience-overlay').style.display = 'block';
-                document.body.style.overflow = 'hidden';
-                initExpSnow();
-            }
+            let selectedIds = [];
 
-            function closeNewYearExperience() {
-                document.getElementById('experience-overlay').style.display = 'none';
-                document.body.style.overflow = 'auto';
-                hideTanzaku();
-            }
-
-            document.getElementById('exp-fireworks').addEventListener('click', function (e) {
-                if (document.getElementById('tanzaku-wrapper').style.display === 'block') return;
-                createFireworkEffect(e.clientX, e.clientY);
-                setTimeout(() => showTanzaku(), 500);
+            // Init
+            const grid = document.getElementById('keyword-grid');
+            keywords.forEach(k => {
+                const btn = document.createElement('button');
+                btn.className = `h-16 rounded-xl border flex flex-col items-center justify-center transition-all bg-white hover:shadow-md ${k.border}`;
+                btn.innerHTML = `
+                    <span class="en-font font-bold text-sm ${k.text}">${k.en}</span>
+                    <span class="text-[10px] text-gray-400 font-bold mt-1">${k.jp}</span>
+                `;
+                btn.onclick = () => toggle(k.id, btn);
+                grid.appendChild(btn);
             });
 
-            function createFireworkEffect(x, y) {
-                const container = document.getElementById('exp-fireworks');
-                const colors = ['#ffffff', '#D43E2D', '#FFD700', '#ADD8E6'];
-                const color = colors[Math.floor(Math.random() * colors.length)];
-                for (let i = 0; i < 35; i++) {
-                    const p = document.createElement('div');
-                    p.style.cssText = `position:absolute; left:${x}px; top:${y}px; width:2px; height:2px; border-radius:50%; background:${color}; box-shadow:0 0 5px ${color}; pointer-events:none;`;
-                    const angle = Math.random() * Math.PI * 2;
-                    const dist = Math.random() * 120 + 30;
-                    p.animate([{ transform: 'translate(0, 0)', opacity: 1 }, { transform: `translate(${Math.cos(angle) * dist}px, ${Math.sin(angle) * dist}px)`, opacity: 0 }], { duration: 1000, easing: 'ease-out' });
-                    container.appendChild(p);
-                    setTimeout(() => p.remove(), 1000);
+            function toggle(id, btn) {
+                const idx = selectedIds.indexOf(id);
+                const data = keywords.find(k => k.id === id);
+
+                if (idx > -1) {
+                    selectedIds.splice(idx, 1);
+                    btn.classList.remove('btn-active');
+                    btn.style.backgroundColor = '';
+                    btn.style.borderColor = '';
+                } else {
+                    if (selectedIds.length >= 4) return;
+                    selectedIds.push(id);
+                    btn.classList.add('btn-active');
+                    // 选中时高亮边框
+                    btn.style.borderColor = data.color === '#ffffff' ? '#999' : data.color;
+
+                    triggerWobble();
+                }
+                updateDaruma();
+            }
+
+            function triggerWobble() {
+                const el = document.getElementById('daruma-wrapper');
+                el.classList.remove('wobble-anim', 'float-anim');
+                void el.offsetWidth;
+                el.classList.add('wobble-anim');
+                setTimeout(() => {
+                    el.classList.remove('wobble-anim');
+                    el.classList.add('float-anim');
+                }, 1500);
+            }
+
+            function updateDaruma() {
+                const bg = document.getElementById('body-color-layer');
+                const pupil = document.getElementById('pupil-left');
+
+                if (selectedIds.length === 0) {
+                    bg.style.background = '#e2e8f0';
+                    pupil.classList.add('opacity-0');
+                    return;
+                }
+
+                pupil.classList.remove('opacity-0');
+                const colors = selectedIds.map(id => keywords.find(k => k.id === id).color);
+
+                if (colors.length === 1) {
+                    bg.style.background = colors[0];
+                } else {
+                    // 柔和的线性渐变混合
+                    const stops = colors.map((c, i) => `${c} ${(i / (colors.length - 1) * 100).toFixed(0)}%`).join(', ');
+                    bg.style.background = `linear-gradient(135deg, ${stops})`;
                 }
             }
 
-            function showTanzaku() {
-                const wrapper = document.getElementById('tanzaku-wrapper');
-                const tanzaku = document.getElementById('tanzaku');
-                const container = document.getElementById('poem-container');
-                const content = document.getElementById('poem-content');
-                const author = document.getElementById('poem-author');
-                const era = document.getElementById('poem-era');
-                const guide = document.getElementById('guide-text');
+            function resetDaruma() {
+                selectedIds = [];
+                Array.from(grid.children).forEach(btn => {
+                    btn.classList.remove('btn-active');
+                    btn.style.borderColor = '';
+                });
+                updateDaruma();
+                triggerWobble();
+            }
 
-                const poem = poems[Math.floor(Math.random() * poems.length)];
+            function generateCard() {
+                if (selectedIds.length === 0) {
+                    alert('Please select a wish first!');
+                    return;
+                }
 
-                content.innerHTML = "";
-                poem.lines.forEach(line => {
-                    const l = document.createElement('div');
-                    l.className = "poem-line";
-                    l.innerText = line;
-                    content.appendChild(l);
+                const modal = document.getElementById('modal-overlay');
+                const card = document.getElementById('modal-card');
+
+                // Sync Color
+                document.getElementById('result-color').style.background = document.getElementById('body-color-layer').style.background;
+
+                // Clone SVG
+                const svgContainer = document.getElementById('result-svg');
+                svgContainer.innerHTML = '';
+                svgContainer.appendChild(document.querySelector('#daruma-wrapper svg').cloneNode(true));
+
+                // Tags
+                const tagContainer = document.getElementById('result-tags');
+                tagContainer.innerHTML = '';
+                selectedIds.forEach(id => {
+                    const k = keywords.find(item => item.id === id);
+                    const span = document.createElement('span');
+                    span.className = `px-3 py-1 border rounded-md text-gray-600 bg-white ${k.border}`;
+                    span.innerText = k.jp;
+                    tagContainer.appendChild(span);
                 });
 
-                author.innerText = poem.author;
-                era.innerText = poem.era;
+                // Wish Text
+                const text = selectedIds.map(id => keywords.find(k => k.id === id).jp).join('、');
+                document.getElementById('wish-jp').innerText = text;
 
-                wrapper.style.display = 'block';
-                guide.style.opacity = '0';
-
+                modal.classList.remove('hidden');
                 setTimeout(() => {
-                    tanzaku.classList.add('unrolled');
-                    container.classList.add('visible');
-                }, 50);
+                    modal.classList.remove('opacity-0');
+                    card.classList.remove('scale-95');
+                    card.classList.add('scale-100');
+                }, 10);
             }
 
-            function hideTanzaku() {
-                const tanzaku = document.getElementById('tanzaku');
-                const container = document.getElementById('poem-container');
-                container.classList.remove('visible');
-                tanzaku.classList.remove('unrolled');
-                setTimeout(() => {
-                    document.getElementById('tanzaku-wrapper').style.display = 'none';
-                    document.getElementById('guide-text').style.opacity = '1';
-                }, 1000);
+            function closeModal() {
+                const modal = document.getElementById('modal-overlay');
+                const card = document.getElementById('modal-card');
+                modal.classList.add('opacity-0');
+                card.classList.remove('scale-100');
+                card.classList.add('scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 300);
             }
-
-            function initExpSnow() {
-                const snowCont = document.getElementById('exp-snow');
-                if (snowCont.children.length > 0) return;
-                for (let i = 0; i < 50; i++) {
-                    const s = document.createElement('div');
-                    s.style.cssText = `position:absolute; background:white; border-radius:50%; opacity:0.3; pointer-events:none; width:2px; height:2px;`;
-                    s.style.left = Math.random() * 100 + '%'; s.style.top = Math.random() * 100 + '%';
-                    s.animate([{ opacity: 0.1 }, { opacity: 0.5 }], { duration: Math.random() * 2000 + 2000, iterations: Infinity, direction: 'alternate' });
-                    snowCont.appendChild(s);
-                }
-            }
-
-            (function () {
-                const fsnow = document.getElementById('footer-snow');
-                for (let i = 0; i < 25; i++) {
-                    const s = document.createElement('div');
-                    s.style.cssText = `position:absolute; background:white; border-radius:50%; opacity:0.4; width:2px; height:2px;`;
-                    s.style.left = Math.random() * 100 + '%'; s.style.top = '-' + Math.random() * 50 + 'px';
-                    s.animate([{ transform: 'translateY(0)' }, { transform: 'translateY(500px)' }], { duration: Math.random() * 4000 + 4000, iterations: Infinity });
-                    fsnow.appendChild(s);
-                }
-            })();
         </script>
-    </div>
-    <!-- 组件结束 -->
+    </body>
+
+    </html>
 </body>
 
 </html>
